@@ -12,7 +12,7 @@ The first foundation includes:
 - Supabase browser/server client helpers.
 - An initial Postgres schema with Row Level Security (RLS) for profiles, stories, follows, likes, bookmarks, comments, admin requests, and newsletter subscribers.
 
-This is an active foundation, **not yet a production-ready platform**. Authentication screens, publishing workflows, moderation tools, email delivery, storage policies, admin approval endpoints, tests, and deployment configuration still need to be implemented and verified.
+This is an active foundation, **not yet a production-ready platform**. Authentication pages are scaffolded but require a configured Supabase project and end-to-end testing. Publishing workflows, moderation tools, transactional email, storage policies, admin approval endpoints, automated tests, and deployment configuration still need to be implemented and verified.
 
 ## Stack
 
