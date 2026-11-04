@@ -19,7 +19,7 @@ export default function WriterDesk({displayName,email,initialStories}:{displayNa
   if(publish&&draft.body.trim().split(/\s+/).length<20){setMessage("Your story needs at least 20 words before publishing. You can still save it as a draft.");return;}
   setBusy(true);setMessage("");
   try{const {data:{user}}=await supabase.auth.getUser();if(!user)throw new Error("Your session expired. Please sign in again.");
-   const payload={title:draft.title.trim(),excerpt:draft.excerpt.trim(),body:{type:"plain_text",content:draft.body},category:draft.category,status:publish?"published":"draft",published_at:publish?new Date().toISOString():null};
+   const {data:profile}=await supabase.from("profiles").select("county").eq("id",user.id).maybeSingle();\n   const payload={county:profile?.county??null,title:draft.title.trim(),excerpt:draft.excerpt.trim(),body:{type:"plain_text",content:draft.body},category:draft.category,status:publish?"published":"draft",published_at:publish?new Date().toISOString():null};
    let result;
    if(draft.storyId){result=await supabase.from("stories").update(payload).eq("id",draft.storyId).eq("author_id",user.id).select("id,title,category,status,updated_at,excerpt,body").single();}
    else{const slug=draft.title.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,55)+"-"+Date.now().toString(36);result=await supabase.from("stories").insert({...payload,slug,author_id:user.id}).select("id,title,category,status,updated_at,excerpt,body").single();}
