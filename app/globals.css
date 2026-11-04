@@ -98,3 +98,89 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .desk-guidance{display:flex;gap:15px;margin-top:25px;padding:22px 24px;background:var(--olive);color:#f8f0e4}.desk-guidance>svg{flex:none;color:#e6c49c}.desk-guidance h3{font:1.25rem Georgia,serif;margin:0 0 7px}.desk-guidance p{margin:0;color:#e2e4d8;font:.86rem/1.6 Georgia,serif}
 @media(max-width:900px){.desk-layout{grid-template-columns:1fr}.desk-sidebar{position:relative;top:auto;min-height:0;transform:none;padding:25px}.desk-nav{display:flex;flex-wrap:wrap;margin-top:22px}.desk-nav a{flex:1 1 auto}.desk-sidebar-note{display:none}}
 @media(max-width:560px){.desk-header{align-items:flex-start;gap:10px}.desk-user{align-items:flex-end;flex-direction:column;gap:7px;font-size:.62rem}.desk-layout{padding-top:20px}.desk-welcome{display:block}.desk-date{text-align:left;margin-top:15px}.desk-fields{grid-template-columns:1fr;gap:0}.compose-top{align-items:flex-start;flex-direction:column}.desk-compose-bottom{align-items:flex-start;flex-direction:column}.desk-compose-bottom>div{width:100%;flex-direction:column}.desk-save,.desk-publish{width:100%}.desk-story-row{align-items:flex-start}}
+
+
+/* Kenyan editorial redesign — homepage system */
+.kenya-site{--kenya-cream:#f6efe4;--kenya-paper:#fffaf3;--kenya-ink:#29241f;--kenya-clay:#a84f38;--kenya-green:#435847;--kenya-wine:#542d39;--kenya-line:#ded2c3;background:var(--kenya-cream);color:var(--kenya-ink)}
+.kenya-site .top-note{background:var(--kenya-green);letter-spacing:.16em}
+.kenya-site .header{max-width:1500px;padding-top:25px;padding-bottom:25px;border-color:var(--kenya-line)}
+.kenya-site .brand-name{font-family:Georgia,serif;font-size:clamp(1.45rem,2.2vw,1.9rem);letter-spacing:-.065em}
+.brand-period{color:var(--kenya-clay)}
+.kenya-site .brand-sub{letter-spacing:.19em}
+.kenya-site .nav-links{gap:clamp(18px,2.8vw,42px);font-size:.78rem}
+.kenya-site .nav-cta{background:var(--kenya-green);border-radius:2px;min-height:46px}
+.kenya-site .nav-cta:hover,.kenya-site .button-dark:hover{background:#304333}
+.kenya-hero{max-width:1500px;min-height:680px;padding-top:76px;padding-bottom:88px;grid-template-columns:1fr 1fr;gap:clamp(42px,7vw,110px)}
+.kenya-hero .hero-copy{padding-left:clamp(0px,2vw,28px)}
+.kenya-hero .hero-kicker{color:var(--kenya-green);letter-spacing:.22em}
+.kenya-hero .hero-kicker:before{background:var(--kenya-green);width:42px}
+.kenya-hero h1{font-family:Georgia,serif;font-size:clamp(4.2rem,7.5vw,7.8rem);line-height:.86;letter-spacing:-.085em;margin:31px 0}
+.kenya-hero h1 em{color:var(--kenya-clay)}
+.kenya-hero .hero-description{font-family:Arial,sans-serif;font-size:1rem;line-height:1.85;max-width:480px;color:#74685d}
+.kenya-hero .button-dark{background:var(--kenya-green);border-radius:2px;min-height:49px}
+.kenya-hero .button-outline{border-color:#9c8b7a;border-radius:2px;min-height:49px}
+.kenya-hero .hero-note{display:flex;align-items:center;gap:7px;color:var(--kenya-green);letter-spacing:.08em}
+.kenya-hero .hero-art{min-height:570px;max-width:610px;width:100%;justify-self:end}
+.kenya-hero .hero-photo{inset:0 8% 5% 8%;background-image:linear-gradient(180deg,rgba(25,22,17,.02),rgba(25,22,17,.12)),url("https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1400&q=90");background-position:center 30%;filter:saturate(.72) contrast(1.02);box-shadow:0 24px 65px rgba(45,35,26,.14)}
+.kenya-hero .hero-frame{inset:18px 0 0;border-color:#b99a6a}
+.kenya-hero .hero-stamp{background:var(--kenya-clay);border-color:var(--kenya-cream)}
+.kenya-hero .hero-art-label{position:absolute;right:0;top:0;writing-mode:vertical-rl;font-size:.56rem;letter-spacing:.17em;color:#71675c}
+.kenya-hero .photo-caption{color:#fffaf3;right:12%;bottom:10%;text-shadow:0 1px 8px #333}
+.kenya-ribbon{display:flex;justify-content:center;align-items:center;gap:clamp(15px,3.5vw,52px);flex-wrap:wrap;padding:22px 20px;border-top:1px solid var(--kenya-line);border-bottom:1px solid var(--kenya-line);color:var(--kenya-green);font-size:.62rem;letter-spacing:.2em}
+.kenya-ribbon i{font-style:normal;color:var(--kenya-clay);font-size:.8rem}
+.kenya-site .manifesto{background:var(--kenya-wine);padding-top:90px;padding-bottom:94px}
+.kenya-site .manifesto blockquote{font-family:Georgia,serif;max-width:900px}
+.kenya-site .section{max-width:1500px;padding-top:105px;padding-bottom:105px}
+.kenya-site .section-heading{margin-bottom:44px}
+.kenya-site .section-heading h2{font-family:Georgia,serif;font-size:clamp(2.6rem,4.4vw,4.6rem)}
+.kenya-site .section-heading p{font-family:Arial,sans-serif;font-size:.9rem;line-height:1.8}
+.kenya-site .story-grid{grid-template-columns:1.18fr 1fr 1fr;gap:28px}
+.kenya-site .story-image,.kenya-site .story-card:first-child .story-image{height:350px}
+.kenya-site .story-card:first-child .story-image{height:410px}
+.kenya-site .story-image{position:relative;background-color:#d7c8b5}
+.kenya-site .story-image.one{background-image:url("https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1100&q=85")}
+.kenya-site .story-image.two{background-image:url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85")}
+.kenya-site .story-image.three{background-image:url("https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1000&q=85")}
+.kenya-site .story-tag{position:absolute;top:14px;left:14px;background:var(--kenya-cream);color:var(--kenya-green)}
+.story-place{position:absolute;right:13px;bottom:13px;display:flex;align-items:center;gap:5px;padding:8px 10px;background:rgba(35,31,26,.72);color:#fffaf3;font-size:.62rem;letter-spacing:.08em}
+.kenya-site .story-meta{color:var(--kenya-green);font-size:.61rem}
+.kenya-site .story-card h3{font-size:clamp(1.5rem,2.1vw,2.15rem);line-height:1.12}
+.kenya-site .story-card p{font-family:Arial,sans-serif;font-size:.85rem;line-height:1.7}
+.kenya-site .story-author{letter-spacing:.12em;font-size:.59rem}
+.editorial-more{display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid var(--kenya-line);margin-top:42px;padding-top:22px;color:#786c60;font-size:.78rem}
+.editorial-more a,.text-link{display:inline-flex;align-items:center;gap:8px;color:var(--kenya-green);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.kenya-site .rooms{background:#eee5d8}
+.kenya-site .room-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #d7cabb;border-bottom:1px solid #d7cabb}
+.kenya-site .room-card{background:transparent;border:0;border-right:1px solid #d7cabb;padding:32px 24px;min-height:270px}
+.kenya-site .room-card:last-child{border-right:0}
+.kenya-site .room-number{color:var(--kenya-green);font-size:.85rem}
+.kenya-site .room-icon{color:var(--kenya-clay)}
+.kenya-site .room-card h3{font-size:1.55rem;line-height:1.1}
+.kenya-site .room-card p{font-family:Arial,sans-serif;font-size:.82rem;line-height:1.7}
+.kenya-site .room-card a{color:var(--kenya-green)}
+.kenya-voices{max-width:1500px;margin:auto;padding:100px clamp(20px,5vw,76px);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,8vw,120px);align-items:center}
+.voices-copy h2{font:400 clamp(3.3rem,6vw,6rem)/.9 Georgia,serif;letter-spacing:-.075em;margin:22px 0}
+.voices-copy h2 em{color:var(--kenya-clay);font-weight:400}
+.voices-copy p{max-width:410px;color:var(--muted);line-height:1.8;font-size:.95rem;margin-bottom:26px}
+.county-board{padding:32px;background:#e9dfd1;border:1px solid #d8cabb;position:relative}
+.county-board:before{content:"";position:absolute;inset:9px;border:1px solid rgba(83,69,54,.14);pointer-events:none}
+.county-board-top{display:flex;justify-content:space-between;gap:10px;padding-bottom:20px;border-bottom:1px solid #cfc1b1;color:var(--kenya-green);font-size:.58rem;letter-spacing:.16em}
+.county-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.county-list span{padding:16px 8px;border-bottom:1px solid #d5c8b8;color:#54483e;font:1rem Georgia,serif}
+.county-list span:nth-child(3n+2){border-left:1px solid #d5c8b8;border-right:1px solid #d5c8b8;padding-left:14px}
+.county-board>p{margin:20px 0 0;color:#7c6e60;font:italic .85rem Georgia,serif}
+.kenya-site .community{padding-top:90px;padding-bottom:110px;gap:clamp(40px,7vw,95px)}
+.kenya-site .community-art{min-height:510px;background-position:center;box-shadow:12px 12px 0 #e3d5c4}
+.kenya-site .community-copy h2{font-size:clamp(2.8rem,4.6vw,4.7rem)}
+.kenya-site .community-copy p{font-family:Arial,sans-serif;font-size:.94rem;line-height:1.8}
+.kenya-site .community-list span{font-size:.75rem}
+.kenya-site .join{background:var(--kenya-green);padding:100px 20px}
+.kenya-site .join .eyebrow{color:#e2c49a}
+.kenya-site .join h2{font-size:clamp(3rem,5.5vw,5.5rem)}
+.kenya-site .join .button-light{border-radius:2px}
+.kenya-site .footer{max-width:1500px;padding-top:42px;padding-bottom:42px}
+.kenya-site .footer-links a:hover{color:var(--kenya-clay)}
+@media(max-width:1000px){.kenya-site .room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kenya-site .room-card:nth-child(2){border-right:0}.kenya-site .room-card:nth-child(-n+2){border-bottom:1px solid #d7cabb}.kenya-voices{gap:38px}}
+@media(max-width:850px){.kenya-hero{grid-template-columns:1fr;padding-top:55px;gap:38px}.kenya-hero .hero-art{justify-self:center;max-width:650px;width:100%;min-height:510px}.kenya-site .story-grid{grid-template-columns:1fr 1fr}.kenya-site .story-card:first-child{grid-column:span 2}.kenya-site .story-card:first-child .story-image{height:380px}.kenya-voices{grid-template-columns:1fr}.county-board{max-width:720px}.kenya-site .community-art{min-height:390px}}
+@media(max-width:560px){.kenya-site .header{padding-top:18px;padding-bottom:18px}.kenya-site .nav-cta{font-size:.56rem;padding:0 10px}.kenya-hero{padding-top:43px;padding-bottom:50px}.kenya-hero h1{font-size:clamp(3.7rem,18vw,5.2rem)}.kenya-hero .hero-art{min-height:390px}.kenya-hero .hero-photo{inset:0 7% 6% 7%}.kenya-ribbon{gap:12px;font-size:.52rem;padding:17px 12px}.kenya-site .manifesto{padding:66px 22px}.kenya-site .section{padding-top:68px;padding-bottom:68px}.kenya-site .section-heading h2{font-size:2.65rem}.kenya-site .story-grid{grid-template-columns:1fr}.kenya-site .story-card:first-child{grid-column:auto}.kenya-site .story-image,.kenya-site .story-card:first-child .story-image{height:330px}.editorial-more{align-items:flex-start;flex-direction:column}.kenya-site .room-grid{grid-template-columns:1fr}.kenya-site .room-card,.kenya-site .room-card:nth-child(2){border-right:0;border-bottom:1px solid #d7cabb;min-height:0;padding:27px 20px}.kenya-site .room-card:last-child{border-bottom:0}.kenya-voices{padding:70px 20px}.county-board{padding:24px 17px}.county-list{grid-template-columns:repeat(2,1fr)}.county-list span:nth-child(3n+2){border-left:0;border-right:0;padding-left:8px}.county-list span:nth-child(even){border-left:1px solid #d5c8b8;padding-left:14px}.kenya-site .community{padding-top:65px;padding-bottom:75px}.kenya-site .community-art{min-height:300px}.kenya-site .community-list{grid-template-columns:1fr}.kenya-site .join{padding:75px 22px}.kenya-site .footer{gap:22px}}
+@media(prefers-reduced-motion:reduce){.kenya-site .hero-photo,.kenya-site .story-card,.kenya-site .room-card{transition:none}}
