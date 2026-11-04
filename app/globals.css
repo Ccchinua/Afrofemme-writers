@@ -30,3 +30,54 @@
 .member-welcome>p:not(.eyebrow){font:1.1rem/1.7 Georgia,serif;color:var(--muted);max-width:560px}
 .member-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 @media(max-width:560px){.member-header{align-items:flex-start;gap:12px;flex-direction:column}.member-email{font-size:.65rem}}
+
+
+/* Afrofemme editorial motion: tactile depth, gentle 3D and accessible motion */
+:root{--shadow-soft:0 18px 45px rgba(56,34,25,.09);--shadow-deep:0 28px 65px rgba(45,27,22,.17)}
+body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transparent 34%),var(--paper)}
+.site-shell{isolation:isolate}
+.header{position:relative;z-index:5;backdrop-filter:blur(12px)}
+.brand-name{transition:color .25s ease}
+.brand:hover .brand-name{color:var(--clay)}
+.nav-links a{position:relative;padding:8px 0}
+.nav-links a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--clay);transition:right .25s ease}
+.nav-links a:hover:after{right:0}
+.nav-cta,.button-dark,.button-outline,.button-light{position:relative;overflow:hidden;transform:translateZ(0);transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.nav-cta:hover,.button-dark:hover,.button-light:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(74,39,29,.18)}
+.button-outline:hover{transform:translateY(-2px)}
+.hero{perspective:1200px}
+.hero-copy{animation:afro-rise .85s both}
+.hero-art{perspective:1000px;transform-style:preserve-3d}
+.hero-photo{transform:rotateY(-5deg) rotateX(1deg) translateZ(0);transform-origin:center;box-shadow:var(--shadow-deep);transition:transform .7s cubic-bezier(.2,.75,.25,1),filter .7s ease}
+.hero-art:hover .hero-photo{transform:rotateY(0deg) rotateX(0deg) scale(1.018);filter:saturate(.95)}
+.hero-frame{transform:translateZ(28px);transition:transform .6s ease}
+.hero-art:hover .hero-frame{transform:translate3d(7px,-7px,34px)}
+.hero-stamp{box-shadow:0 14px 35px rgba(51,27,25,.2);transform:translateZ(55px) rotate(-9deg);animation:stamp-drift 6s ease-in-out infinite}
+.story-card{position:relative;transform-style:preserve-3d;transition:transform .35s ease,filter .35s ease}
+.story-card:hover{transform:translateY(-8px) rotateX(1.2deg);filter:drop-shadow(0 16px 18px rgba(52,32,25,.1))}
+.story-image{overflow:hidden;box-shadow:0 8px 22px rgba(50,32,25,.08);transition:box-shadow .35s ease}
+.story-image:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,245,229,.12),transparent 45%,rgba(42,24,20,.12));pointer-events:none;transition:opacity .35s ease}
+.story-card:hover .story-image{box-shadow:var(--shadow-deep)}
+.story-tag{position:relative;z-index:1;box-shadow:0 5px 16px rgba(40,25,20,.12)}
+.room-grid{background:transparent;border:0;gap:14px}
+.room-card{position:relative;border:1px solid var(--line);transition:transform .35s ease,box-shadow .35s ease,background .35s ease;transform-style:preserve-3d}
+.room-card:hover{transform:translateY(-7px) perspective(700px) rotateX(1.5deg);box-shadow:var(--shadow-soft);background:#f8efe3;z-index:1}
+.room-icon{transition:transform .35s ease}
+.room-card:hover .room-icon{transform:translate3d(-3px,-3px,12px) rotate(-8deg)}
+.community-art{box-shadow:var(--shadow-deep);transform:perspective(900px) rotateY(3deg);transition:transform .55s ease,filter .55s ease}
+.community-art:hover{transform:perspective(900px) rotateY(0) translateY(-5px);filter:saturate(1.08)}
+.manifesto{position:relative;overflow:hidden}
+.manifesto:before,.manifesto:after{content:"✳";position:absolute;color:rgba(226,190,151,.12);font-size:clamp(8rem,18vw,16rem);line-height:1;pointer-events:none}
+.manifesto:before{left:-.04em;top:-.25em;transform:rotate(-18deg)}
+.manifesto:after{right:-.04em;bottom:-.35em;transform:rotate(18deg)}
+.join{position:relative;overflow:hidden}
+.join:before{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(248,240,228,.14);border-radius:50%;left:-180px;top:-220px;box-shadow:0 0 0 28px rgba(248,240,228,.035),0 0 0 58px rgba(248,240,228,.025);pointer-events:none}
+.join>*{position:relative}
+.auth-card{box-shadow:0 22px 65px rgba(55,35,25,.1);transition:transform .35s ease,box-shadow .35s ease}
+.auth-card:focus-within{transform:translateY(-3px);box-shadow:var(--shadow-soft)}
+.auth-submit:hover{transform:translateY(-2px)}
+@keyframes afro-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes stamp-drift{0%,100%{translate:0 0;rotate:-9deg}50%{translate:0 -7px;rotate:-6deg}}
+@media(max-width:850px){.hero-photo{transform:none}.hero-art:hover .hero-photo{transform:scale(1.012)}.community-art{transform:none}.community-art:hover{transform:translateY(-3px)}}
+@media(max-width:560px){.hero-stamp{animation:none}.story-card:hover,.room-card:hover{transform:translateY(-3px)}.manifesto:before,.manifesto:after{font-size:7rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
