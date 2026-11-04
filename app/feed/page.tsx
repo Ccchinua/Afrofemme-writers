@@ -2,7 +2,7 @@ import Link from "next/link";
 import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";
 export const metadata={title:"Community Feed"};
-type FeedItem={id:string;kind:string;title:string;body:string;date:string;author_id:string;href:string};
+type FeedItem={id:string;kind:string;title:string;body:string;date:string;author_id:string|null;href:string};
 export default async function FeedPage(){
  const db=await createClient();const {data:{user}}=await db.auth.getUser();if(!user)redirect("/login?next=/feed");
  const [stories,posts,entries,audio,events]=await Promise.all([
