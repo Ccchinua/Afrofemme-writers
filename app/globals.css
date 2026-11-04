@@ -372,3 +372,25 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .meetup-recap label{max-width:230px}.meetup-recap input[type=file]{font-size:12px;padding:8px}
 .meetup-recap>input{max-width:260px}
 @media(max-width:620px){.gathering-form-grid{grid-template-columns:1fr}.gathering-filter{align-items:stretch;flex-direction:column}.gathering-filter select{max-width:none}.meetup-recap{align-items:stretch;flex-direction:column}.meetup-recap label,.meetup-recap>input{max-width:none}}
+
+/* Afrofemme Gatherings */
+.gathering-form{margin:64px 0;padding:clamp(22px,4vw,42px);background:#f3ece2;border:1px solid rgba(84,43,56,.13);border-radius:8px}
+.gathering-form>p{max-width:680px;color:#66584f;line-height:1.7}
+.gathering-form label,.gathering-filter label,.meetup-recap label{display:grid;gap:8px;font-size:13px;font-weight:600;color:#49352d}
+.gathering-form input,.gathering-form textarea,.gathering-form select,.gathering-filter select,.meetup-recap input{width:100%;padding:12px 13px;border:1px solid rgba(73,53,45,.22);border-radius:4px;background:#fffdf9;color:#49352d;font:inherit}
+.gathering-form>label{margin-top:18px}
+.gathering-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.gathering-form button,.feature-admin-actions button{margin-top:18px;padding:12px 18px;border:0;border-radius:3px;background:#542b38;color:#fff;cursor:pointer}
+.gathering-form button:disabled{opacity:.6}
+.gathering-filter{display:flex;align-items:center;gap:16px;margin:0 0 22px;flex-wrap:wrap}
+.gathering-filter select{max-width:260px}
+.gathering-card{margin-bottom:18px}
+.gathering-details{display:flex;gap:12px 22px;flex-wrap:wrap;margin:18px 0;color:#6f6259;font-size:13px}
+.event-rsvp{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.event-rsvp small{color:#6d594e}
+.meetup-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px}
+.meetup-gallery figure{margin:0}.meetup-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:5px}.meetup-gallery figcaption{font-size:12px;color:#6b5a50;margin-top:5px}
+.meetup-recap{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid rgba(73,53,45,.12)}
+.meetup-recap label{max-width:230px}.meetup-recap input[type=file]{font-size:12px;padding:8px}
+.meetup-recap>input{max-width:260px}
+@media(max-width:620px){.gathering-form-grid{grid-template-columns:1fr}.gathering-filter{align-items:stretch;flex-direction:column}.gathering-filter select{max-width:none}.meetup-recap{align-items:stretch;flex-direction:column}.meetup-recap label,.meetup-recap>input{max-width:none}}
