@@ -1,0 +1,1 @@
+grant update on public.meetup_proposals to authenticated;
