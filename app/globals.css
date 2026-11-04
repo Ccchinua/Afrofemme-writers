@@ -283,3 +283,27 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .legal-shell h2{font:400 1.55rem Georgia,serif;margin:0 0 12px}
 .legal-shell section p,.legal-note{color:var(--muted);font-size:.92rem;line-height:1.85;margin:0}
 .legal-note{margin-top:40px;padding:18px;background:var(--paper-deep);font-size:.78rem}
+
+
+.story-community{max-width:680px;margin:65px auto 0;border-top:1px solid var(--line);padding-top:28px}
+.story-reactions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.story-reactions button{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border:1px solid var(--line);background:#fbf8f2;color:var(--muted);font-size:.7rem;cursor:pointer}
+.story-reactions button.is-active{color:var(--clay-dark);border-color:var(--clay)}
+.comments-heading{display:flex;align-items:center;gap:10px;color:var(--olive)}
+.comments-heading h2{font:400 1.7rem Georgia,serif;margin:0}
+.comments-heading span{font-size:.65rem;color:var(--muted)}
+.comment-form{margin-top:20px;padding:18px;background:#fbf8f2;border:1px solid var(--line)}
+.comment-form textarea{width:100%;border:0;outline:0;resize:vertical;background:transparent;color:var(--ink);font:1rem/1.7 Georgia,serif}
+.comment-form>div{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.comment-form>div span{color:var(--muted);font-size:.65rem}
+.comment-form button{display:inline-flex;align-items:center;gap:7px;border:0;background:var(--olive);color:white;padding:11px 14px;font-size:.65rem;cursor:pointer}
+.comment-form button:disabled{opacity:.5;cursor:not-allowed}
+.comment-message{padding:12px;background:var(--paper-deep);color:var(--muted);font-size:.75rem}
+.comment-message a{color:var(--clay-dark);text-decoration:underline}
+.comment-list{display:grid}
+.comment-item{display:flex;gap:13px;padding:19px 0;border-bottom:1px solid var(--line)}
+.comment-avatar{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--paper-deep);color:var(--olive);font:1rem Georgia,serif}
+.comment-byline{display:flex;gap:12px;align-items:center;color:var(--ink);font-size:.72rem;font-weight:600}
+.comment-byline time{font-size:.62rem;color:var(--muted);font-weight:400}
+.comment-item p{margin:7px 0 0;color:var(--muted);font-size:.85rem;line-height:1.7;white-space:pre-wrap}
+.no-comments{font:italic 1rem Georgia,serif;color:var(--muted);padding:18px 0}
