@@ -500,3 +500,9 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .annual-closing p{color:var(--muted);font:1rem Georgia,serif;margin-bottom:25px}
 .annual-closing .button-light{display:inline-flex;background:var(--wine);color:#fff4e8;padding:14px 20px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:760px){.annual-story-grid,.annual-spotlights{grid-template-columns:1fr}.annual-story-image{height:300px}}
+
+.challenge-date-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.challenge-date-fields input{width:100%}
+.challenge-admin-list{display:grid;gap:12px;margin-top:24px}
+.admin-action{background:transparent;border:1px solid var(--line);padding:9px 13px;color:var(--clay-dark);font-size:.68rem;text-transform:uppercase;cursor:pointer}
+@media(max-width:640px){.challenge-date-fields{grid-template-columns:1fr}}
