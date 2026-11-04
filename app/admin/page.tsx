@@ -5,6 +5,7 @@ import ModerationQueue from "./moderation-queue";
 import EditorialReview from "./editorial-review";
 import MeetupProposalReview from "./meetup-proposal-review";
 import MeetupAttendance from "./meetup-attendance";
+import ChallengeManager from "./challenge-manager";
 export const metadata={title:"Editorial Admin"};
 export default async function AdminPage(){
  const db=await createClient();
@@ -12,6 +13,7 @@ export default async function AdminPage(){
  if(!user)redirect("/login");
  const {data:roles}=await db.from("app_roles").select("role").eq("user_id",user.id);
  if(!roles?.some(r=>r.role==="admin"||r.role==="super_admin"))redirect("/dashboard");
+ const {data:challenges}=await db.from("community_challenges").select("id,title,description,prompt,starts_at,ends_at,status,created_at").order("created_at",{ascending:false}).limit(30);
  const {data:submissions}=await db.from("editorial_submissions").select("id,story_id,author_id,status,author_note,editor_note,submitted_at,stories(title,slug,excerpt)").order("submitted_at",{ascending:false}).limit(100);
  const {data:meetupProposals}=await db.from("meetup_proposals").select("id,proposer_id,title,description,event_type,county,venue,proposed_at,capacity,host_name,contact_note,status").eq("status","pending").order("created_at",{ascending:true}).limit(100);
  const {data:reports}=await db.from("content_reports").select("id,target_type,target_id,reason,status,created_at,reporter_id").order("created_at",{ascending:false}).limit(100);
@@ -26,6 +28,7 @@ export default async function AdminPage(){
  <section className="feature-intro"><span className="eyebrow accent">PRIVATE · EDITORIAL OPERATIONS</span><h1>Care for the<br/><em>community.</em></h1><p>Review reports, protect the writing space and keep editorial decisions accountable.</p></section>
  <MeetupProposalReview initial={(meetupProposals??[]) as any[]}/>
  <MeetupAttendance initial={attendance as any[]}/>
+ <ChallengeManager initial={(challenges??[]) as any[]} userId={user.id}/>
  <EditorialReview initial={(submissions??[]) as any[]}/>
  <section className="feature-list"><div className="feature-list-head"><div><span className="eyebrow accent">MODERATION</span><h2>Reported content</h2></div><span>{reports?.filter(r=>r.status==="open").length??0} open</span></div><ModerationQueue reports={reports??[]}/></section>
  {roles.some(r=>r.role==="super_admin")&&<section className="feature-list" style={{marginTop:60}}><div className="feature-list-head"><div><span className="eyebrow accent">SUPER ADMIN ONLY</span><h2>Admin access requests</h2></div><span>{requests?.length??0} pending</span></div>{!requests?.length?<p className="feature-empty">No pending requests.</p>:requests.map((r:any)=><article className="feature-card" key={r.id}><h3>Request for administrator access</h3><p>{r.reason}</p><small>Requester: {r.requester_id} · {new Date(r.created_at).toLocaleDateString()}</small><p>Review and grant roles through the protected server-side approval workflow.</p></article>)}</section>}
