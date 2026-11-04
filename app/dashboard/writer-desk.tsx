@@ -16,17 +16,26 @@ export default function WriterDesk({displayName,email,initialStories}:{displayNa
  function editStory(story:Story){const body=story.body&&typeof story.body==="object"&&"content" in story.body?String((story.body as {content?:unknown}).content??""):typeof story.body==="string"?story.body:"";setDraft({title:story.title,category:story.category||"Essay",excerpt:story.excerpt||"",body,storyId:story.id});setMessage("Editing your saved story. Save changes when ready.");document.getElementById("compose")?.scrollIntoView({behavior:"smooth"});}
  async function save(publish:boolean){
   if(!draft.title.trim()||!draft.body.trim()){setMessage("Add a title and some writing before saving.");return;}
-  if(publish&&draft.body.trim().split(/\s+/).length<20){setMessage("Your story needs at least 20 words before publishing. You can still save it as a draft.");return;}
+  if(publish&&draft.body.trim().split(/\\s+/).length<20){setMessage("Your story needs at least 20 words before submitting. You can still save it as a draft.");return;}
   setBusy(true);setMessage("");
-  try{const {data:{user}}=await supabase.auth.getUser();if(!user)throw new Error("Your session expired. Please sign in again.");
+  try{
+   const {data:{user}}=await supabase.auth.getUser();
+   if(!user)throw new Error("Your session expired. Please sign in again.");
    const {data:profile}=await supabase.from("profiles").select("county").eq("id",user.id).maybeSingle();
-   const payload={county:profile?.county??null,title:draft.title.trim(),excerpt:draft.excerpt.trim(),body:{type:"plain_text",content:draft.body},category:draft.category,status:"draft",published_at:null};
+   let existingStatus="draft";
+   if(draft.storyId){const {data:existing,error:statusError}=await supabase.from("stories").select("status").eq("id",draft.storyId).eq("author_id",user.id).maybeSingle();if(statusError)throw statusError;if(!existing)throw new Error("This story could not be found.");existingStatus=existing.status;}
+   const payload={county:profile?.county??null,title:draft.title.trim(),excerpt:draft.excerpt.trim(),body:{type:"plain_text",content:draft.body},category:draft.category};
    let result;
    if(draft.storyId){result=await supabase.from("stories").update(payload).eq("id",draft.storyId).eq("author_id",user.id).select("id,title,category,status,updated_at,excerpt,body").single();}
    else{const slug=draft.title.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,55)+"-"+Date.now().toString(36);result=await supabase.from("stories").insert({...payload,slug,author_id:user.id,status:"draft",published_at:null}).select("id,title,category,status,updated_at,excerpt,body").single();}
    if(result.error)throw result.error;
+   if(publish&&existingStatus!=="published"){
+    const {error:submissionError}=await supabase.from("editorial_submissions").upsert({story_id:result.data.id,author_id:user.id,status:"submitted",author_note:"",editor_note:"",submitted_at:new Date().toISOString(),reviewed_at:null,reviewed_by:null},{onConflict:"story_id"});
+    if(submissionError)throw submissionError;
+   }
    setStories(current=>[result.data,...current.filter(item=>item.id!==result.data.id)].sort((a,b)=>b.updated_at.localeCompare(a.updated_at)));
-   setDraft(emptyDraft);window.localStorage.removeItem("afrofemme-writer-draft");setLocalSaved(false);setMessage(publish?(existingStatus==="published"?"Your published story has been updated.":"Your story has been submitted to the editorial team. You will be notified when they respond."):"Your draft has been saved to your account.");
+   setDraft(emptyDraft);window.localStorage.removeItem("afrofemme-writer-draft");setLocalSaved(false);
+   setMessage(publish?(existingStatus==="published"?"Your published story has been updated.":"Your story has been submitted to the editorial team. You will be notified when they respond."):"Your draft has been saved to your account.");
   }catch(error){setMessage(error instanceof Error?error.message:"We couldn't save your story. Please try again.");}
   finally{setBusy(false);}
  }
