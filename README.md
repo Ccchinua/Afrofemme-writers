@@ -2,48 +2,60 @@
 
 **Her voice. Her story. Her world.**
 
-A free literary home for African women to publish, read, discover, and connect.
+A free Kenyan literary home for women to write, publish, read, discover and connect.
 
-## Current build
+## Product direction
 
-The first foundation includes:
-- A responsive editorial homepage and Afrofemme visual identity.
-- Next.js App Router, React, and TypeScript.
-- Supabase browser/server client helpers.
-- An initial Postgres schema with Row Level Security (RLS) for profiles, stories, follows, likes, bookmarks, comments, admin requests, and newsletter subscribers.
+Afrofemme Writers is designed as a contemporary Kenyan literary journal and writers' community. Its identity draws carefully from Kenyan places, languages, textures and everyday creative life without treating any one community as a stand-in for the whole country.
 
-This is an active foundation, **not yet a production-ready platform**. Authentication pages are scaffolded but require a configured Supabase project and end-to-end testing. Publishing workflows, moderation tools, transactional email, storage policies, admin approval endpoints, automated tests, and deployment configuration still need to be implemented and verified.
+## Current implementation
+
+- Kenyan editorial homepage with responsive layouts and a compact mobile menu.
+- Supabase authentication foundation: signup, login, email callback and password reset.
+- Authenticated Writer's Desk with local browser draft recovery, account draft saving, editing, publishing and deletion.
+- Reading Lounge showing published stories and author attribution.
+- Public article pages with reading-time estimates.
+- Writer profile editor with county and language fields.
+- Initial privacy, terms and community-guidelines pages.
+- Supabase migrations for profiles, stories, community relationships and Kenyan county/language discovery fields.
+- Row Level Security policies in the database foundation.
 
 ## Stack
 
-- Next.js 15 + React 19 + TypeScript
-- Tailwind CSS 4
-- Supabase Auth, Postgres, and Storage (to be configured)
-- Resend email delivery (to be configured)
-- Vercel deployment (to be configured)
+- Next.js 15 App Router, React 19 and TypeScript
+- Tailwind CSS 4 and custom editorial CSS
+- Supabase Auth, Postgres and Storage (Storage upload policies still to be added)
+- Vercel hosting
 
-## Run locally
+## Local setup
 
 1. Install Node.js 20 or newer.
-2. Clone this repository.
-3. Run `npm install`.
-4. Copy `.env.example` to `.env.local`.
-5. Create a Supabase project and add its URL and anon key to `.env.local`.
-6. Apply `supabase/migrations/0001_initial_schema.sql` in the Supabase SQL Editor.
-7. Run `npm run dev` and open http://localhost:3000.
+2. Clone this repository and run `npm install`.
+3. Copy `.env.example` to `.env.local`.
+4. Create a Supabase project and set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+5. Apply migrations in order from `supabase/migrations` in the Supabase SQL Editor.
+6. Run `npm run dev` and open http://localhost:3000.
 
-## Environment variables
+## Supabase migrations
 
-See `.env.example`. Keep `SUPABASE_SERVICE_ROLE_KEY` and `RESEND_API_KEY` server-only. Never prefix secrets with `NEXT_PUBLIC_`.
+Apply these files in order:
+- `0001_initial_schema.sql`
+- `0002_kenyan_discovery.sql`
 
-## Admin security
+The profile editor requires the second migration. The initial owner role must be bootstrapped manually after the owner's auth account exists. Never expose the Supabase service-role key in browser code or commit secrets.
 
-The target is one Super Admin and up to four Admins. No public sign-up flow may grant roles. Role assignment must be enforced by trusted server-side logic and database policies. The initial schema has no client-side role write policy. The owner role must be bootstrapped manually in the trusted Supabase SQL Editor after the owner's account exists. The four-admin limit and approval flow still need a transactional server implementation before enabling admin requests.
+## Important limitations before launch
 
-## Free launch
+This repository is an active implementation, not a verified production service. Before inviting the public:
+- Run the build and type checks and resolve all failures.
+- Apply both database migrations and test signup, email confirmation, login, password reset, draft saving, editing, publishing and deletion against the real Supabase project.
+- Configure Supabase email templates, redirect URLs and production environment variables.
+- Add and test storage buckets and strict image upload policies before enabling cover/avatar uploads.
+- Implement moderation/reporting workflows and trusted admin approval logic. Target permissions remain one Super Admin and no more than four Admins; no client-side role escalation is allowed.
+- Implement newsletter consent and unsubscribe through a trusted endpoint before collecting subscriptions.
+- Add data export/account deletion procedures, backups, rate limits, monitoring and a reviewed privacy notice and terms.
+- Verify the site on real Android and iOS devices and test accessibility.
 
-No paid subscriptions, tips, donations, payments, or M-Pesa monetisation are part of the launch scope.
+## Free launch scope
 
-## Before production
-
-Complete and test email verification, password reset, session refresh, publishing workflows, image upload restrictions, moderation, spam controls, admin approval, newsletter consent/unsubscribe, privacy/terms pages, backups, accessibility, and deployment secrets. Do not describe the site as production-ready until these checks pass.
+No subscriptions, tips, donations, paid memberships, payments or M-Pesa monetisation are included in the launch scope.
