@@ -273,3 +273,13 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .profile-form input:focus,.profile-form select:focus,.profile-form textarea:focus{border-color:var(--clay);box-shadow:0 0 0 3px rgba(185,86,55,.1)}
 .profile-form label small{font-size:.65rem;letter-spacing:0;text-transform:none;color:var(--muted)}
 .profile-form button{min-height:48px;cursor:pointer}
+
+
+.legal-page{min-height:100vh;background:var(--paper)}
+.legal-shell{max-width:780px;margin:auto;padding:75px 24px 110px}
+.legal-shell h1{font:400 clamp(3rem,7vw,5.5rem)/.95 Georgia,serif;letter-spacing:-.075em;margin:20px 0}
+.legal-updated{color:var(--muted);font-size:.78rem;margin-bottom:50px}
+.legal-shell section{padding:23px 0;border-top:1px solid var(--line)}
+.legal-shell h2{font:400 1.55rem Georgia,serif;margin:0 0 12px}
+.legal-shell section p,.legal-note{color:var(--muted);font-size:.92rem;line-height:1.85;margin:0}
+.legal-note{margin-top:40px;padding:18px;background:var(--paper-deep);font-size:.78rem}
