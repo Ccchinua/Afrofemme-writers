@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "Afrofemme Writers — Her voice. Her story. Her world.", template: "%s | Afrofemme Writers" },
-  description: "A literary home for African women. Discover stories, poetry, essays and the voices shaping our worlds.",
+  description: "A literary home for Kenyan women. Discover stories, poetry, essays and the voices shaping Kenya's literary future.",
   applicationName: "Afrofemme Writers",
-  keywords: ["African women writers", "African literature", "poetry", "stories", "essays"]
+  keywords: ["Kenyan women writers", "Kenyan literature", "Kenyan poetry", "stories", "essays", "women writers Kenya"]
 };
-export const viewport: Viewport = { themeColor: "#f7f1e8", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#f6efe4", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
   return <html lang="en"><body>{children}</body></html>;
