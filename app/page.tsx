@@ -16,7 +16,7 @@ export default function Home() {
   <div className="top-note">A home for Kenyan women who write · Always free to explore</div>
   <header className="header">
    <a className="brand" href="/" aria-label="Afrofemme Writers home"><span className="brand-name">afrofemme writers<span className="brand-period">.</span></span><span className="brand-sub">Her voice. Her story. Her world.</span></a>
-   <nav className="nav-links" aria-label="Main navigation"><a href="#stories">Read</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="#about">Our story</a></nav>
+   <nav className="nav-links" aria-label="Main navigation"><a href="/stories">Read</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="#about">Our story</a></nav><details className="mobile-menu"><summary aria-label="Open navigation">Menu <span>＋</span></summary><div><a href="/stories">Reading lounge</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="/login">Sign in</a></div></details>
    <a className="nav-cta" href="/signup">Join the circle <ArrowUpRight size={14}/></a>
   </header>
   <section className="hero kenya-hero">
