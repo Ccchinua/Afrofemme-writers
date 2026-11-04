@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useState} from "react";
+import {useEffect,useMemo,useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {createClient} from "@/lib/supabase/client";
@@ -7,7 +7,7 @@ import {Bookmark,Heart,MessageCircle,Send} from "lucide-react";
 type Comment={id:string;author_id:string;body:string;created_at:string};
 type Writer={id:string;display_name:string};
 export default function StoryCommunity({storyId}:{storyId:string}){
- const supabase=createClient(),router=useRouter();
+ const supabase=useMemo(()=>createClient(),[]),router=useRouter();
  const [userId,setUserId]=useState<string|null>(null),[liked,setLiked]=useState(false),[bookmarked,setBookmarked]=useState(false),[likes,setLikes]=useState(0),[comments,setComments]=useState<Comment[]>([]),[names,setNames]=useState<Map<string,string>>(new Map()),[body,setBody]=useState(""),[busy,setBusy]=useState(false),[message,setMessage]=useState("");
  useEffect(()=>{let active=true;(async()=>{const [{data:{user}},{data:likesData},{data:commentsData}]=await Promise.all([supabase.auth.getUser(),supabase.from("story_likes").select("user_id").eq("story_id",storyId),supabase.from("comments").select("id,author_id,body,created_at").eq("story_id",storyId).eq("is_hidden",false).order("created_at",{ascending:true})]);if(!active)return;setUserId(user?.id??null);setLikes(likesData?.length??0);setLiked(!!user&&!!likesData?.some(row=>row.user_id===user.id));setComments(commentsData??[]);if(user){const {data:bookmark}=await supabase.from("bookmarks").select("story_id").eq("story_id",storyId).eq("user_id",user.id).maybeSingle();if(active)setBookmarked(!!bookmark);}const ids=[...new Set((commentsData??[]).map(row=>row.author_id))];if(ids.length){const {data:profiles}=await supabase.from("profiles").select("id,display_name").in("id",ids);if(active)setNames(new Map<string,string>((profiles??[]).map((p:Writer)=>[p.id,p.display_name] as const)));}})();return()=>{active=false;};},[storyId,supabase]);
  async function requireUser(){if(!userId){setMessage("Sign in to join the conversation.");return false;}return true;}
