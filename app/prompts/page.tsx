@@ -4,7 +4,7 @@ export default async function PromptsPage(){
  const db=await createClient();const {data:{user}}=await db.auth.getUser();
  const [{data:prompts,error},{data:dailyPrompts}]=await Promise.all([
   db.from("writing_prompts").select("id,title,prompt,category,starts_at,ends_at").eq("is_active",true).neq("category","Daily Ink").order("created_at",{ascending:false}).limit(40),
-  db.from("writing_prompts").select("id,title,prompt").eq("is_active",true).eq("category","Daily Ink").order("created_at",{ascending:true}).limit(40)
+  db.from("writing_prompts").select("id,title,prompt").eq("is_active",true).eq("category","Daily Ink").order("created_at",{ascending:true}).order("id",{ascending:true}).limit(40)
  ]);
  const now=new Date(),dayNumber=Math.floor(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate())/86400000),dailyPrompt=dailyPrompts?.length?dailyPrompts[((dayNumber%dailyPrompts.length)+dailyPrompts.length)%dailyPrompts.length]:null;
  return <main className="feature-page"><header className="feature-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/community">Sisters’ Circle</Link><Link href="/challenges">Weekly challenge</Link><Link href="/feed">Community feed</Link><Link href="/dashboard">Writer’s desk</Link></nav></header>
