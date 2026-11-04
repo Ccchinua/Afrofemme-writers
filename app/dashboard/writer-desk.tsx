@@ -23,10 +23,10 @@ export default function WriterDesk({displayName,email,initialStories}:{displayNa
    const payload={county:profile?.county??null,title:draft.title.trim(),excerpt:draft.excerpt.trim(),body:{type:"plain_text",content:draft.body},category:draft.category,status:"draft",published_at:null};
    let result;
    if(draft.storyId){result=await supabase.from("stories").update(payload).eq("id",draft.storyId).eq("author_id",user.id).select("id,title,category,status,updated_at,excerpt,body").single();}
-   else{const slug=draft.title.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,55)+"-"+Date.now().toString(36);result=await supabase.from("stories").insert({...payload,slug,author_id:user.id}).select("id,title,category,status,updated_at,excerpt,body").single();}
+   else{const slug=draft.title.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,55)+"-"+Date.now().toString(36);result=await supabase.from("stories").insert({...payload,slug,author_id:user.id,status:"draft",published_at:null}).select("id,title,category,status,updated_at,excerpt,body").single();}
    if(result.error)throw result.error;
    setStories(current=>[result.data,...current.filter(item=>item.id!==result.data.id)].sort((a,b)=>b.updated_at.localeCompare(a.updated_at)));
-   setDraft(emptyDraft);window.localStorage.removeItem("afrofemme-writer-draft");setLocalSaved(false);setMessage(publish?"Your story has been submitted to the editorial team. You will be notified when they respond.":"Your draft has been saved to your account.");
+   setDraft(emptyDraft);window.localStorage.removeItem("afrofemme-writer-draft");setLocalSaved(false);setMessage(publish?(existingStatus==="published"?"Your published story has been updated.":"Your story has been submitted to the editorial team. You will be notified when they respond."):"Your draft has been saved to your account.");
   }catch(error){setMessage(error instanceof Error?error.message:"We couldn't save your story. Please try again.");}
   finally{setBusy(false);}
  }
