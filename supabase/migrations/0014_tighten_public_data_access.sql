@@ -1,7 +1,9 @@
 revoke all privileges on table public.newsletter_subscribers from anon, authenticated;
 drop policy if exists "Authors create own stories" on public.stories;
+drop policy if exists "Authors create own draft stories" on public.stories;
 create policy "Authors create own draft stories" on public.stories for insert to authenticated with check (auth.uid() = author_id and status = 'draft');
 drop policy if exists "Authors update own stories" on public.stories;
+drop policy if exists "Authors update own drafts" on public.stories;
 create policy "Authors update own drafts" on public.stories for update to authenticated using (auth.uid() = author_id and status = 'draft') with check (auth.uid() = author_id and status = 'draft');
 drop policy if exists "Read own admin requests" on public.admin_requests;
 create policy "Read own admin requests" on public.admin_requests for select to authenticated using (auth.uid() = requester_id);
