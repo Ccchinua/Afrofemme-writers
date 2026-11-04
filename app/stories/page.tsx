@@ -9,7 +9,7 @@ export default async function ReadingLounge(){
  const {data,error}=await supabase.from("stories").select("id,author_id,title,slug,excerpt,category,published_at,cover_image_url").eq("status","published").order("published_at",{ascending:false}).limit(60);
  const stories=(data??[]) as Story[];const authorIds=[...new Set(stories.map(story=>story.author_id))];
  const {data:profiles}=authorIds.length?await supabase.from("profiles").select("id,display_name,county").in("id",authorIds):{data:[] as Writer[]};
- const writers=new Map((profiles??[]).map(writer=>[writer.id,writer]));
+ const writers=new Map<string,Writer>((profiles??[]).map(writer=>[writer.id,writer] as const));
  return <main className="reading-page"><header className="reading-header"><Link href="/" className="desk-brand"><span>afrofemme writers.</span><small>KENYAN WOMEN · THEIR WORDS · THEIR WORLD</small></Link><nav><Link href="/">Home</Link><Link href="/dashboard">Writer's desk</Link><Link href="/signup" className="reading-join">Join the circle ↗</Link></nav></header>
  <section className="reading-hero"><span className="eyebrow accent">THE READING LOUNGE · KENYA</span><h1>Stories that<br/><em>bring us closer.</em></h1><p>Read the words of Kenyan women. New perspectives, familiar places, unexpected worlds.</p><div className="reading-stats"><span><BookOpen size={15}/> {stories.length} recent stories</span><span><MapPin size={15}/> Voices from Kenya</span></div></section>
  <section className="reading-content"><div className="reading-heading"><div><span className="eyebrow accent">THE LATEST WRITING</span><h2>Make time for a story.</h2></div><span>READ · REFLECT · RETURN</span></div>
