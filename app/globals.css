@@ -506,3 +506,8 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
 .challenge-admin-list{display:grid;gap:12px;margin-top:24px}
 .admin-action{background:transparent;border:1px solid var(--line);padding:9px 13px;color:var(--clay-dark);font-size:.68rem;text-transform:uppercase;cursor:pointer}
 @media(max-width:640px){.challenge-date-fields{grid-template-columns:1fr}}
+
+.daily-ink-card{max-width:950px;margin:30px auto 42px;background:var(--paper-deep);border:1px solid var(--line);padding:clamp(25px,5vw,48px)}
+.daily-ink-card .eyebrow{color:var(--clay-dark)}
+.daily-ink-card h2{font:400 clamp(2rem,4vw,3.3rem)/1.05 Georgia,serif;letter-spacing:-.05em;margin:18px 0}
+.daily-ink-card p{max-width:720px;color:var(--muted);font:1.05rem/1.7 Georgia,serif;margin-bottom:24px}
