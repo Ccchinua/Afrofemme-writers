@@ -1,0 +1,6 @@
+import Link from "next/link";
+import {notFound,redirect} from "next/navigation";
+import {createClient} from "@/lib/supabase/server";
+import PromptResponseForm from "./prompt-response-form";
+export const metadata={title:"Respond to a writing prompt"};
+export default async function RespondToPrompt({params}:{params:Promise<{id:string}>}){const {id}=await params;const db=await createClient();const {data:{user}}=await db.auth.getUser();if(!user)redirect("/login");const {data:prompt}=await db.from("writing_prompts").select("id,title,prompt,category,ends_at").eq("id",id).eq("is_active",true).maybeSingle();if(!prompt)notFound();if(prompt.ends_at&&new Date(prompt.ends_at)<new Date())notFound();const {data:existing}=await db.from("prompt_entries").select("id,title,body,visibility").eq("prompt_id",id).eq("author_id",user.id).maybeSingle();return <main className="feature-page"><header className="feature-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/prompts">All prompts</Link><Link href="/dashboard">Writer’s desk</Link></nav></header><section className="feature-intro"><span className="eyebrow accent">THE INK ROOM · YOUR RESPONSE</span><h1>{prompt.title}</h1><p>{prompt.prompt}</p></section><PromptResponseForm promptId={id} initial={existing??null}/></main>}
