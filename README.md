@@ -2,7 +2,7 @@
 
 **Her voice. Her story. Her world.**
 
-A free Kenyan literary home for women to write, publish, read, discover and connect.
+A free Kenyan literary home for women to write, publish, read, discover and connect.\n\n**Official contact:** [afrofemmewritingclub@gmail.com](mailto:afrofemmewritingclub@gmail.com)
 
 ## Product direction
 
