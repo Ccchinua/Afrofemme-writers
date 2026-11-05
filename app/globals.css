@@ -1060,3 +1060,55 @@ img, video, iframe, canvas, svg {
 .creative-profile-footer a{display:flex;gap:8px;align-items:center;color:var(--clay-dark)}
 @media(max-width:850px){.creative-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.creative-portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.creative-search-form{grid-template-columns:1fr 1fr}.creative-search-form button{justify-content:center}}
 @media(max-width:560px){.portfolio-add-form,.portfolio-manage-grid,.creative-directory-grid,.creative-portfolio-grid,.creative-story-list{grid-template-columns:1fr}.portfolio-manage-card{grid-template-columns:90px 1fr}.portfolio-manage-card>img,.portfolio-manage-placeholder{width:90px;height:105px}.creative-search-form{grid-template-columns:1fr}.creative-profile-cover{height:135px}.creative-profile-main{margin-top:-48px}.creative-profile-avatar{width:96px;height:96px}.creative-profile-actions{justify-content:flex-start;margin-top:14px}.creative-profile-main>.eyebrow{margin-top:18px}.creative-profile-footer{flex-direction:column}.creative-form-section{padding:24px 0}}
+
+
+/* Daily Drop, creative circles, collaborations and passport */
+.drop-layout{max-width:980px;margin:0 auto;padding:10px 22px 70px;display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+.daily-drop-card{padding:clamp(24px,5vw,48px);background:linear-gradient(140deg,#252b52,#543047 68%,#9a4938);color:#fff4df;position:relative;overflow:hidden}
+.daily-drop-card:after{content:"✳";position:absolute;right:-15px;bottom:-75px;font:15rem Georgia,serif;color:#dba64b22}
+.daily-drop-card h2{font:400 clamp(2.2rem,5vw,4rem)/1 Georgia,serif;letter-spacing:-.055em;margin:24px 0}
+.daily-drop-card p{font:1.12rem/1.7 Georgia,serif;max-width:580px}
+.daily-drop-card small{display:block;margin-top:28px;color:#f0c98a;font-size:.7rem;letter-spacing:.08em}
+.drop-response{padding:23px;background:#fbf8f2;border:1px solid var(--line);display:grid;align-content:start;gap:15px}
+.drop-response label{display:grid;gap:8px;font-size:.75rem;color:var(--muted)}
+.drop-response textarea,.drop-response select{width:100%;border:1px solid var(--line);background:white;padding:12px;font: .95rem/1.55 Georgia,serif;color:var(--ink)}
+.drop-response button{border:0;cursor:pointer}
+.drop-community{grid-column:1/-1;display:grid;gap:12px}
+.drop-community .feature-card{padding:18px}
+.drop-community .feature-card p{font:1rem/1.6 Georgia,serif}
+.collaboration-board{display:grid;gap:18px}
+.collaboration-board>.marketplace-controls{grid-template-columns:1fr auto}
+.collaboration-board .marketplace-form{margin:0}
+.collaboration-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.collaboration-grid .feature-card h3{font:1.5rem Georgia,serif}
+.collaboration-grid .feature-card p{font:.9rem/1.65 Georgia,serif;color:var(--muted)}
+.collaboration-grid button{border:0;background:none;cursor:pointer}
+.circle-directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.circle-directory-grid .feature-card{display:flex;flex-direction:column;align-items:flex-start;min-height:230px}
+.circle-directory-grid .feature-card h3{font:1.5rem Georgia,serif;margin:15px 0 8px}
+.circle-directory-grid .feature-card p{font:.9rem/1.6 Georgia,serif;color:var(--muted);flex:1}
+.circle-directory-grid button{border:0;cursor:pointer;margin-top:15px}
+.passport-hero{max-width:1050px;margin:25px auto 0;padding:clamp(24px,5vw,55px);background:linear-gradient(135deg,#252b52,#563344 75%,#914b37);color:#fff2dc}
+.passport-identity{display:flex;align-items:center;gap:18px;margin:22px 0}
+.passport-identity>img,.passport-identity>span{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid #d9a64d;display:grid;place-items:center;background:#d9a64d;color:#252b52;font:2rem Georgia,serif}
+.passport-identity h1{font:400 clamp(2rem,5vw,3.6rem) Georgia,serif;margin:0}
+.passport-identity p{color:#e7cba5;font-size:.75rem;margin:7px 0}
+.passport-intro{font:1.05rem/1.6 Georgia,serif;color:#f1dfc6;max-width:620px}
+.passport-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0}
+.passport-stats article{padding:17px;background:#ffffff12;border:1px solid #ffffff24;display:grid;gap:8px}
+.passport-stats svg{width:19px;color:#e5b45c}
+.passport-stats strong{font:2rem Georgia,serif}
+.passport-stats small{font-size:.65rem;color:#e7cba5}
+.passport-streak{display:flex;gap:13px;align-items:center;padding:15px;background:#d9a64d1c;border:1px solid #d9a64d66}
+.passport-streak svg{color:#e5b45c}
+.passport-streak span{display:grid;gap:4px}
+.passport-streak small{font-size:.7rem;color:#e7cba5;line-height:1.5}
+.passport-timeline{display:grid;gap:0;max-width:800px}
+.passport-timeline article{display:grid;grid-template-columns:44px 1fr;gap:15px;padding:20px 0;border-bottom:1px solid var(--line)}
+.passport-timeline article>span{width:40px;height:40px;border-radius:50%;background:var(--paper-deep);display:grid;place-items:center;color:var(--clay-dark)}
+.passport-timeline article small{font-size:.65rem;color:var(--clay-dark);text-transform:uppercase;letter-spacing:.08em}
+.passport-timeline article h3{font:1.35rem Georgia,serif;margin:7px 0}
+.passport-timeline article p{font:.85rem/1.6 Georgia,serif;color:var(--muted)}
+.passport-timeline article a{font-size:.7rem;color:var(--clay-dark)}
+@media(max-width:760px){.drop-layout{grid-template-columns:1fr}.drop-community{grid-column:auto}.circle-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.passport-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.collaboration-grid,.circle-directory-grid{grid-template-columns:1fr}.collaboration-board>.marketplace-controls{grid-template-columns:1fr}.passport-identity>img,.passport-identity>span{width:60px;height:60px}.passport-stats article{padding:12px}.passport-stats strong{font-size:1.6rem}}
