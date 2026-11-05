@@ -1,4 +1,3 @@
-
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -13,6 +12,13 @@ export async function middleware(request: NextRequest) {
   }
 
   const supabase = createServerClient(url, key, {
+    cookieOptions: {
+      // Keep refreshed auth cookies persistent across browser restarts.
+      maxAge: 60 * 60 * 24 * 400,
+      path: "/",
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
     cookies: {
       getAll() {
         return request.cookies.getAll();
@@ -38,6 +44,7 @@ export async function middleware(request: NextRequest) {
     },
   });
 
+  // Refresh and validate the member session on each request.
   await supabase.auth.getUser();
 
   return response;
