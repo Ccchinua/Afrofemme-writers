@@ -17,7 +17,7 @@ export default async function Home() {
   <div className="top-note">An inclusive home for African creativity · Always free to explore</div>
   <header className="header">
    <a className="brand" href="/" aria-label="Afrofemme Writers home"><span className="brand-name">afrofemme<span className="brand-period">.</span></span><span className="brand-sub">African creativity. Many voices. One community.</span></a>
-   <nav className="nav-links" aria-label="Main navigation"><a href="/stories">Read</a><a href="/annual">Annual</a><a href="/feed">Community</a><a href="/challenges">Challenges</a><a href="/writers">Writers</a></nav><details className="mobile-menu"><summary aria-label="Open navigation">Menu <span>＋</span></summary><div><a href="/stories">Reading lounge</a><a href="/feed">Community feed</a><a href="/challenges">Writing challenges</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="/login">Sign in</a></div></details>
+   <nav className="nav-links" aria-label="Main navigation"><a href="/stories">Read</a><a href="/annual">Annual</a><a href="/feed">Community</a><a href="/challenges">Challenges</a><a href="/creatives">Creatives</a><a href="/writers">Writers</a></nav><details className="mobile-menu"><summary aria-label="Open navigation">Menu <span>＋</span></summary><div><a href="/stories">Reading lounge</a><a href="/creatives">Find creatives</a><a href="/feed">Community feed</a><a href="/challenges">Writing challenges</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="/login">Sign in</a></div></details>
    <a className="nav-cta" href="/signup">Join the circle <ArrowUpRight size={14}/></a>
   </header>
   <section className="hero kenya-hero">
