@@ -27,7 +27,7 @@ export default async function MemberHome(){
  const profile=profileResult.data;
  const name=profile?.display_name||user.user_metadata?.display_name||"Writer";
  const followedIds=(followingResult.data??[]).map(x=>x.followed_id).filter(Boolean);
- const recQueries:Promise<any>[]=[
+ const recQueries=[
   db.from("stories").select("id,title,slug,excerpt,category,published_at,author_id,county,language,cover_image_url").eq("status","published").neq("author_id",user.id).order("published_at",{ascending:false}).limit(8)
  ];
  if(profile?.county)recQueries.push(db.from("stories").select("id,title,slug,excerpt,category,published_at,author_id,county,language,cover_image_url").eq("status","published").eq("county",profile.county).neq("author_id",user.id).order("published_at",{ascending:false}).limit(8));
