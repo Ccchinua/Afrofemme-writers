@@ -62,6 +62,10 @@ export default async function MemberHome(){
    <Link href="/feed"><UsersRound/><span><strong>Join the conversation</strong><small>See what your community is sharing</small></span><ArrowUpRight/></Link>
    <Link href="/journey"><Sparkles/><span><strong>Your writing journey</strong><small>Follow your milestones and connections</small></span><ArrowUpRight/></Link> 
    <Link href="/profile"><PenLine/><span><strong>Creative Studio</strong><small>Build your profile and portfolio</small></span><ArrowUpRight/></Link>\n   <Link href="/marketplace"><Sparkles/><span><strong>Creative Marketplace</strong><small>Offer services, sell work and find paid opportunities</small></span><ArrowUpRight/></Link>
+   <Link href="/daily-drop"><Sparkles/><span><strong>Daily Drop</strong><small>Take today's creative invitation</small></span><ArrowUpRight/></Link>
+   <Link href="/circles"><UsersRound/><span><strong>Creative Circles</strong><small>Find your people and join a creative room</small></span><ArrowUpRight/></Link>
+   <Link href="/collaborations"><UsersRound/><span><strong>Collaboration Hub</strong><small>Find partners and build something together</small></span><ArrowUpRight/></Link>
+   <Link href="/passport"><Sparkles/><span><strong>Creative Passport</strong><small>Your creative milestones and journey</small></span><ArrowUpRight/></Link>
   </div></section>
   <section className="member-content-grid">
    <div className="member-panel"><div className="member-section-heading"><div><span className="eyebrow accent">YOUR WRITING</span><h2>Back to your desk</h2></div><Link href="/dashboard">All your work ↗</Link></div>
