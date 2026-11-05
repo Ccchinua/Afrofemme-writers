@@ -140,3 +140,19 @@ drop trigger if exists creative_streak_circle_post on public.circle_posts;
 create trigger creative_streak_circle_post after insert on public.circle_posts for each row execute function private.record_creative_activity();
 drop trigger if exists creative_streak_daily_drop on public.daily_drop_entries;
 create trigger creative_streak_daily_drop after insert on public.daily_drop_entries for each row execute function private.record_creative_activity();
+
+insert into public.daily_drops(drop_date,title,prompt,discipline)
+select current_date + n,
+ (array['The place that made you','A voice you remember','Small acts of courage','The colour of belonging','A letter to tomorrow','The story in an object','What home sounds like'])[1+(n%7)],
+ (array[
+ 'Create something about a place that shaped who you are. Show us one detail that still lives with you.',
+ 'Write, photograph or record a voice that has stayed with you. What did it teach you?',
+ 'Make a small work about an ordinary act of courage that deserves to be noticed.',
+ 'Explore the colours, textures or symbols that make you feel that you belong.',
+ 'Create a letter, poem, sketch or voice note addressed to your future self.',
+ 'Choose an everyday object and reveal the memory or story hidden inside it.',
+ 'Describe home through sound, rhythm, silence or a familiar voice.'
+ ])[1+(n%7)],
+ 'All creatives'
+from generate_series(0,30) as n
+on conflict(drop_date) do nothing;
