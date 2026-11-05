@@ -16,7 +16,7 @@ export default async function InboxPage(){
  const profileMap=new Map((profiles??[]).map(p=>[p.id,p]));
  const sorted=(conversations??[]).map(c=>{
   const own=(members??[]).find(m=>m.conversation_id===c.id&&m.user_id===user.id);
-  const other=(members??[]).find(m=>m.conversation_id===c.id&&m.user_id!===user.id);
+  const other=(members??[]).find(m=>m.conversation_id===c.id&&m.user_id!==user.id);
   const otherId=c.participant_one===user.id?c.participant_two:c.participant_one;
   const last=(messages??[]).find(m=>m.conversation_id===c.id);
   const accepted=Boolean(own?.accepted_at&&other?.accepted_at);
