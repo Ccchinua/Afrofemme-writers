@@ -826,3 +826,88 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transpare
 .challenge-deadline{color:#F2C66C}
 .challenge-entry{border-left:3px solid var(--af-ochre)}
 @media(max-width:560px){.frame-options{grid-template-columns:1fr}.writer-profile-heading{padding:16px 12px}.daily-ink-card,.challenge-prompt{padding:22px 18px}}
+
+
+/* Inclusive creative-platform UX foundation */
+:root {
+  --focus-ring: 0 0 0 3px rgba(185, 86, 55, .24);
+  --control-height: 46px;
+  --content-gutter: clamp(16px, 4vw, 64px);
+}
+html {
+  scroll-padding-top: 5rem;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  min-width: 320px;
+  overflow-wrap: anywhere;
+}
+a, button, input, select, textarea, summary {
+  -webkit-tap-highlight-color: transparent;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  box-shadow: var(--focus-ring);
+}
+button, input, select, textarea {
+  font: inherit;
+}
+button, input[type="submit"], input[type="button"], select {
+  min-height: var(--control-height);
+}
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+input, select, textarea {
+  max-width: 100%;
+}
+img, video, iframe, canvas, svg {
+  max-width: 100%;
+}
+:target {
+  scroll-margin-top: 5.5rem;
+}
+::placeholder {
+  color: #84746a;
+  opacity: 1;
+}
+:disabled, [aria-disabled="true"] {
+  cursor: not-allowed;
+}
+@media (max-width: 720px) {
+  .section, .member-welcome {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+  .hero-actions > a,
+  .member-actions > a {
+    min-height: 46px;
+  }
+  .mobile-menu summary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .mobile-menu[open] > div {
+    z-index: 20;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
