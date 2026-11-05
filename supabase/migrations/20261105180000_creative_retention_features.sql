@@ -205,7 +205,7 @@ create table if not exists public.member_moments(
  expires_at timestamptz not null default (now()+interval '24 hours'),
  constraint member_moment_media_pair check((media_url is null and media_type is null) or (media_url is not null and media_type is not null))
 );
-create index if not exists member_moments_active_idx on public.member_moments(expires_at desc) where expires_at>now();
+create index if not exists member_moments_active_idx on public.member_moments(expires_at desc);
 alter table public.member_moments enable row level security;
 grant select,insert,delete on public.member_moments to authenticated;
 create policy "Members see active moments" on public.member_moments for select to authenticated using(expires_at>now());
