@@ -24,7 +24,7 @@ export default function CircleComposer(){
     if(uploadError)throw uploadError;
     mediaUrl=db.storage.from("social-media").getPublicUrl(path).data.publicUrl;
    }
-   const title=caption.replace(/\s+/g," ").slice(0,100)||"A moment from the community";
+   const cleanTitle=caption.replace(/\s+/g," ").slice(0,100);const title=cleanTitle.length>=3?cleanTitle:"A community note";
    const hashtags=[...new Set((caption.match(/#[a-zA-Z0-9_]{2,32}/g)||[]).map(tag=>tag.slice(1).toLowerCase()))].slice(0,12);
    const {error}=await db.from("circle_posts").insert({author_id:user.id,title,body:caption||"Shared with the Afrofemme community.",topic,media_url:mediaUrl,media_type:mediaType,hashtags});
    if(error)throw error;
