@@ -8,7 +8,7 @@ export default function CircleComposer(){
  const router=useRouter();
  useEffect(()=>{if(!file){setPreview(null);return;}const url=URL.createObjectURL(file);setPreview(url);return()=>URL.revokeObjectURL(url);},[file]);
  async function submit(e:React.FormEvent){
-  e.preventDefault();const caption=body.trim();if(!caption&&!file){setMessage("Write a caption or choose a photo/video.");return;}
+  e.preventDefault();const caption=body.trim();const words=caption?caption.split(/\\s+/u).filter(Boolean).length:0;if(words>1000){setMessage("Community posts can be up to 1,000 words.");return;}if(!caption&&!file){setMessage("Write a caption or choose a photo/video.");return;}
   setBusy(true);setMessage("");
   try{
    const db=createClient();const {data:{user}}=await db.auth.getUser();if(!user)throw new Error("Please sign in again.");
@@ -35,7 +35,7 @@ export default function CircleComposer(){
  return <form className="feature-compose social-composer" onSubmit={submit}>
   <div className="social-compose-heading"><span className="eyebrow accent">YOUR COMMUNITY</span><h2>Share a moment.</h2><p>Post a thought, poem, photo or short video with the Afrofemme community.</p></div>
   <label>Space<select value={topic} onChange={e=>setTopic(e.target.value)}><option>General</option><option>Writing craft</option><option>Publishing</option><option>Reading recommendations</option><option>Encouragement</option><option>Kenyan literature</option><option>Poetry and spoken word</option></select></label>
-  <label>Write a caption<textarea maxLength={8000} rows={4} value={body} onChange={e=>setBody(e.target.value)} placeholder="What is on your mind? Add #hashtags to help others discover your post…"/></label>
+  <label>Write a caption <small>{body.trim()?body.trim().split(/\\s+/u).filter(Boolean).length:0} / 1,000 words</small><textarea maxLength={8000} rows={4} value={body} onChange={e=>setBody(e.target.value)} placeholder="What is on your mind? Add #hashtags to help others discover your post…"/></label>
   {preview&&<div className="social-upload-preview">{file?.type.startsWith("video/")?<video src={preview} controls playsInline/>:<img src={preview} alt="Selected post preview"/>}<button type="button" onClick={()=>setFile(null)}>Remove media</button></div>}
   <div className="social-compose-actions"><label className="social-media-picker">＋ Add photo or video<input type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" onChange={e=>setFile(e.target.files?.[0]??null)}/></label><small>Up to 20 MB · JPG, PNG, WebP, MP4 or WebM</small><button disabled={busy||(!body.trim()&&!file)}>{busy?"Sharing…":"Share post"}</button></div>
   {message&&<p role="status" className="circle-feedback">{message}</p>}
