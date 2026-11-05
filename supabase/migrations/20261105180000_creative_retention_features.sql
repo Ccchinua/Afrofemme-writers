@@ -156,3 +156,40 @@ select current_date + n,
  'All creatives'
 from generate_series(0,30) as n
 on conflict(drop_date) do nothing;
+
+-- Automatically add meaningful creative milestones to member passports.
+create or replace function private.record_creative_passport_event()
+returns trigger language plpgsql security definer set search_path=''
+as $$
+declare uid uuid; event_kind text; event_title text; event_description text; event_href text;
+begin
+ if tg_table_name='stories' then
+   if new.status<>'published' or (tg_op='UPDATE' and old.status='published') then return new; end if;
+   uid:=new.author_id; event_kind:='publication'; event_title:='Published “'||new.title||'”'; event_description:='A new story joined the Afrofemme reading lounge.'; event_href:='/stories/'||new.slug;
+ elsif tg_table_name='creative_collaborations' then
+   uid:=new.owner_id; event_kind:='collaboration'; event_title:='Opened a collaboration: '||new.title; event_description:='You invited other creatives to build something together.'; event_href:='/collaborations';
+ elsif tg_table_name='marketplace_listings' then
+   uid:=new.owner_id; event_kind:='marketplace'; event_title:='Published a creative offer: '||new.title; event_description:='You made your creative work available to the community.'; event_href:='/marketplace';
+ elsif tg_table_name='audio_readings' then
+   if new.is_published is not true then return new; end if;
+   uid:=new.author_id; event_kind:='showcase'; event_title:='Shared an audio reading: '||new.title; event_description:='Your voice became part of the Afrofemme soundscape.'; event_href:='/voices';
+ elsif tg_table_name='challenge_entries' then
+   uid:=new.author_id; event_kind:='competition'; event_title:='Entered a creative challenge'; event_description:='You shared work in a community challenge.'; event_href:='/challenges';
+ else return new;
+ end if;
+ insert into public.creative_passport_events(user_id,event_type,title,description,href)
+ values(uid,event_kind,left(event_title,120),left(event_description,400),event_href);
+ return new;
+end;
+$$;
+revoke all on function private.record_creative_passport_event() from public,anon,authenticated;
+drop trigger if exists passport_story_publication on public.stories;
+create trigger passport_story_publication after insert or update of status on public.stories for each row execute function private.record_creative_passport_event();
+drop trigger if exists passport_collaboration_created on public.creative_collaborations;
+create trigger passport_collaboration_created after insert on public.creative_collaborations for each row execute function private.record_creative_passport_event();
+drop trigger if exists passport_marketplace_listing on public.marketplace_listings;
+create trigger passport_marketplace_listing after insert on public.marketplace_listings for each row execute function private.record_creative_passport_event();
+drop trigger if exists passport_audio_reading on public.audio_readings;
+create trigger passport_audio_reading after insert or update of is_published on public.audio_readings for each row execute function private.record_creative_passport_event();
+drop trigger if exists passport_challenge_entry on public.challenge_entries;
+create trigger passport_challenge_entry after insert on public.challenge_entries for each row execute function private.record_creative_passport_event();
