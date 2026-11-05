@@ -1112,3 +1112,19 @@ img, video, iframe, canvas, svg {
 .passport-timeline article a{font-size:.7rem;color:var(--clay-dark)}
 @media(max-width:760px){.drop-layout{grid-template-columns:1fr}.drop-community{grid-column:auto}.circle-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.passport-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.collaboration-grid,.circle-directory-grid{grid-template-columns:1fr}.collaboration-board>.marketplace-controls{grid-template-columns:1fr}.passport-identity>img,.passport-identity>span{width:60px;height:60px}.passport-stats article{padding:12px}.passport-stats strong{font-size:1.6rem}}
+
+
+.moments-board{display:grid;gap:22px}
+.moment-composer{display:grid;gap:14px;padding:22px;background:#fbf8f2;border:1px solid var(--line)}
+.moment-composer label{display:grid;gap:8px;color:var(--muted);font-size:.75rem}
+.moment-composer textarea,.moment-composer input{width:100%;padding:12px;border:1px solid var(--line);background:white;color:var(--ink);font: .9rem/1.5 Georgia,serif}
+.moment-composer button{justify-self:start;border:0;cursor:pointer}
+.moment-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.moment-card{border:1px solid var(--line);background:#fbf8f2;overflow:hidden}
+.moment-card>img,.moment-card>video{width:100%;aspect-ratio:4/5;object-fit:cover;background:#252b52}
+.moment-copy{padding:13px}
+.moment-copy strong{font-size:.8rem}
+.moment-copy p{font:.85rem/1.5 Georgia,serif;color:var(--muted)}
+.moment-copy small{font-size:.62rem;color:var(--clay-dark)}
+@media(max-width:650px){.moment-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:420px){.moment-strip{grid-template-columns:1fr}}
