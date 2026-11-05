@@ -47,7 +47,7 @@ export default async function MemberHome(){
   {label:"Followers",value:followerCountResult.count??0,icon:UsersRound,href:"/journey"}
  ];
  return <main className="member-home">
-  <header className="member-header"><Link href="/" className="feature-brand">afrofemme.</Link><nav><Link href="/stories">Read</Link><Link href="/creatives">Find creatives</Link><Link href="/writers">Writers</Link><Link href="/feed">Community</Link><Link href="/inbox">Inbox</Link><Link href="/notifications">Activity{(unreadResult.count??0)>0?<span className="member-unread">{unreadResult.count}</span>:null}</Link><Link href="/profile">Profile</Link></nav></header>
+  <header className="member-header"><Link href="/" className="feature-brand">afrofemme.</Link><nav><Link href="/stories">Read</Link><Link href="/creatives">Find creatives</Link><Link href="/marketplace">Marketplace</Link><Link href="/writers">Writers</Link><Link href="/feed">Community</Link><Link href="/inbox">Inbox</Link><Link href="/notifications">Activity{(unreadResult.count??0)>0?<span className="member-unread">{unreadResult.count}</span>:null}</Link><Link href="/profile">Profile</Link></nav></header>
   <section className="member-welcome">
    <div className="member-welcome-copy"><span className="eyebrow">YOUR MEMBER HOME · {profile?.county||"KENYA"}</span><h1>Welcome back,<br/><em>{name}.</em></h1><p>Your words have a place here. Find something to read, make a little progress or reconnect with your community.</p>
     <div className="member-primary-actions"><Link className="button-light" href="/dashboard"><PenLine size={15}/> Open Writer’s Desk <ArrowUpRight size={14}/></Link><Link className="member-secondary-action" href="/stories">Find a story to read ↗</Link></div>
@@ -61,7 +61,7 @@ export default async function MemberHome(){
    <Link href="/reading-list"><Bookmark/><span><strong>Your reading shelf</strong><small>Saved stories and recent reading</small></span><ArrowUpRight/></Link>
    <Link href="/feed"><UsersRound/><span><strong>Join the conversation</strong><small>See what your community is sharing</small></span><ArrowUpRight/></Link>
    <Link href="/journey"><Sparkles/><span><strong>Your writing journey</strong><small>Follow your milestones and connections</small></span><ArrowUpRight/></Link> 
-   <Link href="/profile"><PenLine/><span><strong>Creative Studio</strong><small>Build your profile and portfolio</small></span><ArrowUpRight/></Link>
+   <Link href="/profile"><PenLine/><span><strong>Creative Studio</strong><small>Build your profile and portfolio</small></span><ArrowUpRight/></Link>\n   <Link href="/marketplace"><Sparkles/><span><strong>Creative Marketplace</strong><small>Offer services, sell work and find paid opportunities</small></span><ArrowUpRight/></Link>
   </div></section>
   <section className="member-content-grid">
    <div className="member-panel"><div className="member-section-heading"><div><span className="eyebrow accent">YOUR WRITING</span><h2>Back to your desk</h2></div><Link href="/dashboard">All your work ↗</Link></div>
@@ -72,6 +72,6 @@ export default async function MemberHome(){
   <section className="member-recommendations"><div className="member-section-heading"><div><span className="eyebrow accent">A LITTLE READING FOR YOU</span><h2>Voices worth discovering.</h2></div><Link href="/stories">Explore the reading lounge ↗</Link></div>
    {!recommendations.length?<p className="member-empty-inline">The reading shelf is growing. Be among the first to <Link href="/dashboard">publish a story</Link>.</p>:<div className="member-recommend-grid">{recommendations.map((story,index)=>{const writer=authorMap.get(story.author_id);return <article className="member-recommend-card" key={story.id}><div className={"member-recommend-art member-art-"+(index%3)} style={story.cover_image_url?{backgroundImage:"url("+JSON.stringify(story.cover_image_url)+")"}:undefined}><span>{story.category||"Story"}</span></div><div className="member-recommend-copy"><small>{writer?.display_name||"Afrofemme writer"}{writer?.county?" · "+writer.county:""}</small><h3><Link href={"/stories/"+encodeURIComponent(story.slug)}>{story.title}</Link></h3><p>{story.excerpt||"A new voice from the Afrofemme community."}</p><Link href={"/stories/"+encodeURIComponent(story.slug)}>Read story ↗</Link></div></article>})}</div>}
   </section>
-  <footer className="member-footer"><Link href="/stories">Reading lounge</Link><Link href="/creatives">Creative directory</Link><Link href="/writers">Writer directory</Link><Link href="/gatherings">Gatherings</Link><Link href="/privacy">Privacy</Link><Link href="/">Afrofemme Writers.</Link></footer>
+  <footer className="member-footer"><Link href="/stories">Reading lounge</Link><Link href="/creatives">Creative directory</Link><Link href="/marketplace">Marketplace</Link><Link href="/writers">Writer directory</Link><Link href="/gatherings">Gatherings</Link><Link href="/privacy">Privacy</Link><Link href="/">Afrofemme Writers.</Link></footer>
  </main>;
 }
