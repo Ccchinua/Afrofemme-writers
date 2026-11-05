@@ -24,7 +24,7 @@ export default async function CommunityPage(){
   <div className="feed-author-row">{author?.avatar_url?<img src={author.avatar_url} alt="" className="feed-avatar"/>:<span className="feed-avatar feed-initial">{(author?.display_name||"A").slice(0,1).toUpperCase()}</span>}<div><strong>{author?.username?<Link href={"/writers/"+author.username}>{author.display_name||"Community writer"}</Link>:author?.display_name||"Community writer"}</strong><small>{author?.county||"Kenya"} · {new Date(p.created_at).toLocaleString("en-KE",{dateStyle:"medium",timeStyle:"short"})}</small></div><span className="feed-kind">{p.topic}</span></div>
   <h3>{p.title}</h3><p className="social-post-body">{p.body}</p>
   {p.media_url&&<div className="social-post-media">{p.media_type==="video"?<video src={p.media_url} controls playsInline preload="metadata"/>:<img src={p.media_url} alt={"Photo shared by "+(author?.display_name||"a community writer")}/>}</div>}
-  {!!p.hashtags?.length&&<div className="social-hashtags">{p.hashtags.map(tag=><Link key={tag} href={"/feed?tag="+encodeURIComponent(tag)}>#{tag}</Link>)}</div>}
+  {!!p.hashtags?.length&&<div className="social-hashtags">{p.hashtags.map((tag:string)=><Link key={tag} href={"/feed?tag="+encodeURIComponent(tag)}>#{tag}</Link>)}</div>}
   <CirclePostInteractions postId={p.id} initialCounts={counts} viewerReaction={reactions.find(r=>r.user_id===user.id)?.reaction??null} initialReplies={postReplies.map(r=>({id:r.id,body:r.body,created_at:r.created_at,author_id:r.author_id,author_name:replyAuthorMap.get(r.author_id)||"Community writer"}))} initialReposts={postReposts.length} viewerReposted={postReposts.some(r=>r.user_id===user.id)}/>
  </article>})}</section></main>;
 }
