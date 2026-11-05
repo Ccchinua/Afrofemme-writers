@@ -25,6 +25,7 @@ export default function SignupPage() {
    const supabase=createClient();
    const {data,error}=await supabase.auth.signUp({email,password,options:{data:{display_name:name.trim(),avatar_url:avatar||null},emailRedirectTo:window.location.origin+"/auth/callback"}});
    if(error) throw error;
+   if(data.session){window.location.assign("/member");return;}
    setMessage(data.session?"Your account is ready. Your profile picture has been saved. You can sign in.":"Check your email for a verification link. Your chosen profile picture will be saved with your new profile.");
   }catch(err){setMessage(err instanceof Error?err.message:"Unable to create your account. Please try again.");}
   finally{setBusy(false);}
