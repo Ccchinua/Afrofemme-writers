@@ -193,3 +193,21 @@ drop trigger if exists passport_audio_reading on public.audio_readings;
 create trigger passport_audio_reading after insert or update of is_published on public.audio_readings for each row execute function private.record_creative_passport_event();
 drop trigger if exists passport_challenge_entry on public.challenge_entries;
 create trigger passport_challenge_entry after insert on public.challenge_entries for each row execute function private.record_creative_passport_event();
+
+-- 24-hour member moments (separate from permanent literary stories).
+create table if not exists public.member_moments(
+ id uuid primary key default gen_random_uuid(),
+ user_id uuid not null references auth.users(id) on delete cascade,
+ caption text not null default '' check(char_length(caption)<=280),
+ media_url text,
+ media_type text check(media_type is null or media_type in ('image','video')),
+ created_at timestamptz not null default now(),
+ expires_at timestamptz not null default (now()+interval '24 hours'),
+ constraint member_moment_media_pair check((media_url is null and media_type is null) or (media_url is not null and media_type is not null))
+);
+create index if not exists member_moments_active_idx on public.member_moments(expires_at desc) where expires_at>now();
+alter table public.member_moments enable row level security;
+grant select,insert,delete on public.member_moments to authenticated;
+create policy "Members see active moments" on public.member_moments for select to authenticated using(expires_at>now());
+create policy "Members publish their own moments" on public.member_moments for insert to authenticated with check(user_id=(select auth.uid()) and expires_at<=now()+interval '24 hours 1 minute' and expires_at>now());
+create policy "Members delete their own moments" on public.member_moments for delete to authenticated using(user_id=(select auth.uid()));
