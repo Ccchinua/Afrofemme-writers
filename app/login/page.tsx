@@ -15,7 +15,9 @@ export default function LoginPage() {
    const supabase=createClient();
    const {error}=await supabase.auth.signInWithPassword({email,password});
    if(error) throw error;
-   const requested=new URLSearchParams(window.location.search).get("next");\n   const destination=requested&&requested.startsWith("/")&&!requested.startsWith("//")?requested:"/member";\n   window.location.assign(destination);
+   const requested=new URLSearchParams(window.location.search).get("next");
+   const destination=requested&&requested.startsWith("/")&&!requested.startsWith("//")?requested:"/member";
+   window.location.assign(destination);
   }catch(err){setMessage(err instanceof Error?err.message:"Unable to sign in. Please try again.");}
   finally{setBusy(false);}
  }
