@@ -36,3 +36,19 @@ create policy "Members add work to their own portfolio" on public.portfolio_item
 create policy "Members update their own portfolio work" on public.portfolio_items for update to authenticated using (user_id = (select auth.uid())) with check (user_id = (select auth.uid()));
 create policy "Members remove their own portfolio work" on public.portfolio_items for delete to authenticated using (user_id = (select auth.uid()));
 create trigger portfolio_items_updated_at before update on public.portfolio_items for each row execute function public.set_updated_at();
+
+-- Keep the public portfolio lightweight and predictable: a member can showcase up to 12 pieces.
+create or replace function public.enforce_portfolio_item_limit()
+returns trigger language plpgsql set search_path = ''
+as $$
+begin
+  if (select count(*) from public.portfolio_items where user_id = new.user_id) >= 12 then
+    raise exception 'A portfolio can contain up to 12 items.';
+  end if;
+  return new;
+end;
+$$;
+revoke all on function public.enforce_portfolio_item_limit() from public, anon, authenticated;
+create trigger portfolio_items_limit_before_insert
+  before insert on public.portfolio_items
+  for each row execute function public.enforce_portfolio_item_limit();
