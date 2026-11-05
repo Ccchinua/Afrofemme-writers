@@ -784,3 +784,45 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transpare
 .feature-list-head{background-size:9px 9px;background-repeat:repeat-x;background-position:left bottom}
 @media(max-width:760px){.feature-intro:after{width:70px;height:70px;top:28px;right:2px}.feed-card{padding:16px}.social-composer:after{width:20px;height:20px}}
 @media(prefers-reduced-motion:reduce){.brand-name:before{animation:none}}
+
+
+/* AFROFEMME MEMBER REGALIA — earned identity and editorial moments */
+.frame-picker{border:1px solid var(--line);padding:18px;margin:8px 0 22px;background:#FBF4E8}
+.frame-picker legend{font:1.2rem Georgia,serif;color:var(--af-indigo);padding:0 7px}
+.frame-picker>p{font-size:.75rem;line-height:1.5;color:var(--muted);margin:0 0 14px}
+.frame-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.frame-option{display:flex;align-items:center;gap:10px;text-align:left;padding:10px;border:1px solid var(--line);background:#FFFBF4;color:var(--af-indigo);cursor:pointer}
+.frame-option.selected{border:2px solid var(--af-terracotta);background:#F5EAD5}
+.frame-option strong{font-size:.7rem}
+.frame-option small{margin-left:auto;color:var(--af-green);font-size:.62rem}
+.frame-swatch{width:35px;height:35px;flex:0 0 35px;border:3px double var(--af-ochre);background:repeating-conic-gradient(var(--af-indigo) 0 12.5%,var(--af-terracotta) 12.5% 25%,var(--af-ochre) 25% 37.5%,var(--af-green) 37.5% 50%)}
+.frame-terracotta .frame-swatch{background:repeating-conic-gradient(#B94F35 0 12.5%,#D9A52B 12.5% 25%,#252B52 25% 37.5%,#F5EAD5 37.5% 50%)}
+.frame-ochre .frame-swatch{background:repeating-conic-gradient(#D9A52B 0 12.5%,#252B52 12.5% 25%,#F5EAD5 25% 37.5%,#B94F35 37.5% 50%)}
+.frame-forest .frame-swatch{background:repeating-conic-gradient(#245B45 0 12.5%,#D9A52B 12.5% 25%,#252B52 25% 37.5%,#F5EAD5 37.5% 50%)}
+.frame-coral .frame-swatch{background:repeating-conic-gradient(#D65B70 0 12.5%,#D9A52B 12.5% 25%,#252B52 25% 37.5%,#F5EAD5 37.5% 50%)}
+.writer-profile-heading{position:relative;padding:20px;border:1px solid var(--af-ochre);background:#FBF4E8}
+.writer-profile-heading:before{content:"";position:absolute;inset:5px;border:1px solid rgba(217,165,43,.6);pointer-events:none}
+.writer-frame-label{position:absolute;top:-10px;left:18px;background:var(--af-indigo);color:var(--af-cream);padding:5px 10px;font-size:.56rem;letter-spacing:.15em}
+.writer-frame-terracotta{border-color:var(--af-terracotta);background:linear-gradient(135deg,#FBF4E8,#F1D9CC)}
+.writer-frame-ochre{border-color:var(--af-ochre);background:linear-gradient(135deg,#FBF4E8,#F3E5B9)}
+.writer-frame-forest{border-color:var(--af-green);background:linear-gradient(135deg,#FBF4E8,#DCE8D8)}
+.writer-frame-coral{border-color:var(--af-coral);background:linear-gradient(135deg,#FBF4E8,#F5DCE1)}
+.achievement-grid{gap:15px}
+.achievement-card{position:relative;overflow:hidden;border:1px solid var(--af-ochre);background:#FBF4E8;box-shadow:0 10px 24px rgba(37,43,82,.06)}
+.achievement-card:before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,165,43,.55);pointer-events:none}
+.achievement-card>span{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--af-indigo);color:var(--af-ochre);border:3px double var(--af-ochre);font-size:1.25rem}
+.achievement-card h3{color:var(--af-indigo)}
+.daily-ink-card{position:relative;overflow:hidden;border:1px solid var(--af-ochre);border-top:7px solid var(--af-terracotta);background:linear-gradient(135deg,#252B52 0%,#30395F 70%,#245B45 100%);color:#F5EAD5;box-shadow:var(--shadow-deep)}
+.daily-ink-card:after{content:"";position:absolute;right:-35px;top:-40px;width:180px;height:180px;border:2px solid rgba(217,165,43,.6);transform:rotate(45deg);background:repeating-conic-gradient(rgba(217,165,43,.3) 0 12.5%,transparent 12.5% 25%)}
+.daily-ink-card .eyebrow{color:#F2C66C;position:relative;z-index:1}
+.daily-ink-card h2,.daily-ink-card p,.daily-ink-card a{position:relative;z-index:1}
+.daily-ink-card h2{font:clamp(2rem,4vw,3rem)/1.05 Georgia,serif;color:#FFF7E9;max-width:700px}
+.daily-ink-card p{color:#F1E4D3;max-width:650px;line-height:1.75}
+.daily-ink-card .button-dark{background:var(--af-ochre);color:var(--af-indigo)}
+.challenge-prompt{position:relative;overflow:hidden;border:1px solid var(--af-ochre);border-top:8px solid var(--af-terracotta);background:linear-gradient(145deg,#252B52,#334065 65%,#245B45);color:var(--af-cream);box-shadow:var(--shadow-deep)}
+.challenge-prompt:after{content:"AFROFEMME WRITERS  •  THE WRITING CIRCLE  •  ";position:absolute;right:-25px;bottom:15px;transform:rotate(-90deg) translateX(100%);transform-origin:right bottom;color:rgba(217,165,43,.55);font-size:.55rem;letter-spacing:.18em;pointer-events:none}
+.challenge-prompt h2{color:#FFF7E9;font:clamp(1.8rem,4vw,2.8rem)/1.12 Georgia,serif}
+.challenge-prompt p{color:#F1E4D3}
+.challenge-deadline{color:#F2C66C}
+.challenge-entry{border-left:3px solid var(--af-ochre)}
+@media(max-width:560px){.frame-options{grid-template-columns:1fr}.writer-profile-heading{padding:16px 12px}.daily-ink-card,.challenge-prompt{padding:22px 18px}}
