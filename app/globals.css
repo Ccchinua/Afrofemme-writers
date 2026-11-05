@@ -687,3 +687,100 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(180,138,74,.08),transpare
  .inbox-thread-top{align-items:flex-start;flex-direction:column}
  .inbox-bubble{max-width:92%}
 }
+
+
+/* =========================================================
+   AFROFEMME BEADWORK — signature visual identity
+   Contemporary Kenyan inspiration, original geometric motifs
+   ========================================================= */
+:root{
+ --paper:#F5EAD5;--paper-deep:#EBDDCA;--ink:#252B52;--muted:#716B67;
+ --clay:#B94F35;--clay-dark:#913C2B;--wine:#252B52;--olive:#245B45;
+ --gold:#D9A52B;--line:rgba(37,43,82,.17);
+ --af-indigo:#252B52;--af-terracotta:#B94F35;--af-ochre:#D9A52B;
+ --af-green:#245B45;--af-coral:#D65B70;--af-cream:#F5EAD5;
+ --shadow-soft:0 18px 45px rgba(37,43,82,.09);
+ --shadow-deep:0 28px 65px rgba(37,43,82,.16);
+}
+body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transparent 34%),var(--paper);color:var(--af-indigo)}
+.top-note{background:var(--af-indigo);position:relative;isolation:isolate}
+.top-note:after{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background:repeating-linear-gradient(135deg,transparent 0 13px,var(--af-ochre) 13px 15px,transparent 15px 27px)}
+.brand-name{color:var(--af-indigo);display:flex;align-items:center;gap:10px}
+.brand-name:before{content:"";display:inline-block;flex:0 0 25px;width:25px;height:25px;border-radius:50%;border:2px solid var(--af-terracotta);background:radial-gradient(circle,var(--af-ochre) 0 15%,transparent 17% 31%,var(--af-green) 33% 42%,transparent 44%),conic-gradient(from 45deg,var(--af-terracotta) 0 12.5%,var(--af-ochre) 12.5% 25%,var(--af-indigo) 25% 37.5%,var(--af-green) 37.5% 50%,var(--af-coral) 50% 62.5%,var(--af-ochre) 62.5% 75%,var(--af-terracotta) 75% 87.5%,var(--af-indigo) 87.5%);box-shadow:0 0 0 3px var(--paper),0 0 0 4px rgba(37,43,82,.22)}
+.brand-sub{color:var(--af-green)}
+.nav-cta,.button-dark,.feature-compose button,.feature-filter button,.social-compose-actions>button,.inbox-send-form button,.message-request-card button{background:var(--af-indigo);color:var(--af-cream)}
+.nav-cta:hover,.button-dark:hover{background:var(--af-green)}
+.button-outline{border-color:var(--af-indigo);color:var(--af-indigo)}
+.hero-kicker,.eyebrow.accent,.story-meta,.room-number{color:var(--af-terracotta)}
+.hero-kicker:before{background:var(--af-ochre)}
+.hero h1 em,.kenya-hero h1 em,.feature-intro h1 em{color:var(--af-terracotta)}
+.hero-frame{border-color:var(--af-ochre)}
+.hero-stamp{background:var(--af-indigo);border-color:var(--paper);box-shadow:0 0 0 3px var(--af-ochre),0 14px 35px rgba(37,43,82,.22)}
+.manifesto,.kenya-site .manifesto{background:var(--af-indigo);position:relative;isolation:isolate}
+.manifesto:before,.manifesto:after{color:rgba(217,165,43,.2)}
+.manifesto:after{content:"◈"}
+.manifesto .eyebrow{color:var(--af-ochre)}
+.join,.member-next-panel,.journey-hero{background:var(--af-green)}
+.kenya-ribbon{color:var(--af-indigo);border-color:var(--line)}
+.kenya-ribbon i{color:var(--af-terracotta)}
+.kenya-site .top-note{background:var(--af-indigo)}
+.kenya-site .nav-cta,.kenya-hero .button-dark{background:var(--af-indigo)}
+.kenya-site .nav-cta:hover,.kenya-hero .button-dark:hover{background:var(--af-green)}
+.kenya-hero .hero-stamp{background:var(--af-terracotta);border-color:var(--paper)}
+.kenya-hero .hero-frame{border-color:var(--af-ochre)}
+.kenya-site .room-card{background:var(--paper);border-color:var(--line)}
+.kenya-site .room-card:nth-child(2){background:#EBDDCA}
+.kenya-site .room-card:hover{background:#fff5e4}
+.kenya-site .story-image{outline:1px solid rgba(217,165,43,.7);outline-offset:4px}
+.kenya-site .story-image:before{content:"";position:absolute;left:12px;right:12px;bottom:12px;height:9px;opacity:.9;background:repeating-linear-gradient(90deg,var(--af-terracotta) 0 8px,var(--af-ochre) 8px 16px,var(--af-indigo) 16px 24px,var(--af-green) 24px 32px);border:1px solid rgba(245,234,213,.7)}
+.kenya-site .story-tag{background:var(--af-cream);color:var(--af-indigo)}
+.kenya-site .story-meta{color:var(--af-terracotta)}
+.kenya-site .room-card h3{color:var(--af-indigo)}
+.kenya-site .room-card a,.text-link{color:var(--af-green)}
+.kenya-site .community-art{outline:1px solid var(--af-ochre);outline-offset:7px}
+.kenya-site .county-board{border-color:var(--af-ochre)}
+.kenya-site .county-board-top{background:var(--af-indigo)}
+.kenya-site .join{background:var(--af-green)}
+/* Feature pages and the social experience */
+.feature-page{color:var(--af-indigo);background:var(--paper)}
+.feature-header{border-bottom:1px solid var(--line);position:relative}
+.feature-brand{color:var(--af-indigo);font-family:Georgia,serif;font-weight:700;letter-spacing:-.06em}
+.feature-brand:before{content:"◈";display:inline-grid;place-items:center;width:25px;height:25px;margin-right:9px;color:var(--af-terracotta);border:1px solid var(--af-ochre);border-radius:50%;font-size:17px}
+.feature-header nav a,.feature-link{color:var(--af-green)}
+.feature-intro{position:relative;isolation:isolate}
+.feature-intro:after{content:"";position:absolute;z-index:-1;right:0;top:45px;width:112px;height:112px;opacity:.22;background:repeating-conic-gradient(from 45deg,var(--af-terracotta) 0 12.5%,var(--af-ochre) 12.5% 25%,var(--af-green) 25% 37.5%,var(--af-indigo) 37.5% 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.feature-intro>p{color:var(--muted)}
+.feature-compose,.social-composer,.inbox-thread-shell,.member-panel,.member-recommend-card{background:#FBF4E8;border-color:var(--line);box-shadow:0 10px 28px rgba(37,43,82,.045)}
+.feature-card{border-color:var(--line)}
+.feature-card h3,.feed-card h3{color:var(--af-indigo)}
+.feature-card-meta,.feature-card small{color:var(--af-terracotta)}
+.feature-person,.member-shortcut-grid>a,.message-request-card{background:var(--paper-deep);border-color:var(--line)}
+.feature-avatar,.feed-initial{background:var(--af-indigo);color:var(--af-cream)}
+.feed-avatar{border:2px solid var(--af-ochre);box-shadow:0 0 0 2px var(--paper)}
+.feed-kind{background:#EBDDCA;color:var(--af-green);border-radius:999px}
+.feed-card{background:#FBF4E8;padding:22px;border:1px solid var(--line);margin:14px 0;box-shadow:0 8px 24px rgba(37,43,82,.045)}
+.social-composer{border-top:4px solid var(--af-terracotta);position:relative}
+.social-composer:after{content:"";position:absolute;right:18px;top:18px;width:30px;height:30px;border:1px solid var(--af-ochre);transform:rotate(45deg);opacity:.65;pointer-events:none}
+.social-composer select,.social-composer textarea,.profile-message-form textarea,.inbox-send-form textarea{background:#FFFBF4;border-color:var(--line)}
+.social-media-picker{color:var(--af-green);border-color:var(--line)}
+.social-post-media,.social-upload-preview{background:var(--paper-deep)}
+.social-hashtags a,.feed-tag-filter a,.story-discovery-form button,.writer-discovery-form button{color:var(--af-green)}
+.inbox-avatar{background:var(--paper-deep);color:var(--af-indigo);border:2px solid var(--af-ochre)}
+.inbox-bubble{background:var(--paper-deep);color:var(--af-indigo)}
+.inbox-bubble-own{background:var(--af-indigo);color:var(--af-cream)}
+.inbox-unread-dot,.inbox-request-dot{background:var(--af-coral)}
+.writer-profile-stats strong{color:var(--af-indigo)}
+.member-stat strong{color:var(--af-indigo)}
+.member-next-panel{background:var(--af-indigo)}
+.member-next-panel .eyebrow{color:var(--af-ochre)}
+.member-next-panel>a{color:#F4C66C}
+.auth-card{background:#FBF4E8;border-color:var(--line)}
+.auth-form input{background:#FFFBF4;border-color:var(--line)}
+.auth-form input:focus{border-color:var(--af-terracotta);box-shadow:0 0 0 2px rgba(185,79,53,.13)}
+.auth-submit,.auth-card .button-dark{background:var(--af-indigo)}
+/* Reusable geometric beadwork accents */
+.afro-beadwork,.kenya-ribbon,.feature-list-head{background-image:radial-gradient(circle,var(--af-ochre) 1.2px,transparent 1.8px);background-size:13px 13px;background-repeat:repeat-x;background-position:left bottom}
+.kenya-ribbon{background-color:transparent}
+.feature-list-head{background-size:9px 9px;background-repeat:repeat-x;background-position:left bottom}
+@media(max-width:760px){.feature-intro:after{width:70px;height:70px;top:28px;right:2px}.feed-card{padding:16px}.social-composer:after{width:20px;height:20px}}
+@media(prefers-reduced-motion:reduce){.brand-name:before{animation:none}}
