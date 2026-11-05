@@ -1128,3 +1128,5 @@ img, video, iframe, canvas, svg {
 .moment-copy small{font-size:.62rem;color:var(--clay-dark)}
 @media(max-width:650px){.moment-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:420px){.moment-strip{grid-template-columns:1fr}}
+
+.circle-discussion{display:grid;gap:18px}.circle-post-list{display:grid;gap:13px}.circle-post-list .feature-card{padding:18px}.circle-post-list .feature-card p{font:1rem/1.65 Georgia,serif;white-space:pre-wrap}.circle-post-list button{border:0;background:none;cursor:pointer}.circle-directory-grid .feature-link{margin-top:12px;font-size:.75rem}.circle-discussion .moment-composer button{border:0;cursor:pointer}
