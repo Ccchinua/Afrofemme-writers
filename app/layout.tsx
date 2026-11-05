@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   applicationName: "Afrofemme Writers",
   keywords: ["Kenyan women writers", "Kenyan literature", "Kenyan poetry", "stories", "essays", "women writers Kenya"]
 };
-export const viewport: Viewport = { themeColor: "#f6efe4", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#252B52", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
   return <html lang="en"><body>{children}</body></html>;
