@@ -47,7 +47,7 @@ export default async function MemberHome(){
   {label:"Followers",value:followerCountResult.count??0,icon:UsersRound,href:"/journey"}
  ];
  return <main className="member-home">
-  <header className="member-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/stories">Read</Link><Link href="/writers">Find writers</Link><Link href="/feed">Community</Link><Link href="/notifications">Inbox{(unreadResult.count??0)>0?<span className="member-unread">{unreadResult.count}</span>:null}</Link><Link href="/profile">Profile</Link></nav></header>
+  <header className="member-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/stories">Read</Link><Link href="/writers">Find writers</Link><Link href="/feed">Community</Link><Link href="/inbox">Inbox</Link><Link href="/notifications">Activity{(unreadResult.count??0)>0?<span className="member-unread">{unreadResult.count}</span>:null}</Link><Link href="/profile">Profile</Link></nav></header>
   <section className="member-welcome">
    <div className="member-welcome-copy"><span className="eyebrow">YOUR MEMBER HOME · {profile?.county||"KENYA"}</span><h1>Welcome back,<br/><em>{name}.</em></h1><p>Your words have a place here. Find something to read, make a little progress or reconnect with your community.</p>
     <div className="member-primary-actions"><Link className="button-light" href="/dashboard"><PenLine size={15}/> Open Writer’s Desk <ArrowUpRight size={14}/></Link><Link className="member-secondary-action" href="/stories">Find a story to read ↗</Link></div>
