@@ -60,7 +60,8 @@ export default async function MemberHome(){
    <Link href="/dashboard"><PenLine/><span><strong>Write something</strong><small>Start a story or return to a draft</small></span><ArrowUpRight/></Link>
    <Link href="/reading-list"><Bookmark/><span><strong>Your reading shelf</strong><small>Saved stories and recent reading</small></span><ArrowUpRight/></Link>
    <Link href="/feed"><UsersRound/><span><strong>Join the conversation</strong><small>See what your community is sharing</small></span><ArrowUpRight/></Link>
-   <Link href="/journey"><Sparkles/><span><strong>Your writing journey</strong><small>Follow your milestones and connections</small></span><ArrowUpRight/></Link>\n   <Link href="/profile"><PenLine/><span><strong>Creative Studio</strong><small>Build your profile and portfolio</small></span><ArrowUpRight/></Link>
+   <Link href="/journey"><Sparkles/><span><strong>Your writing journey</strong><small>Follow your milestones and connections</small></span><ArrowUpRight/></Link> 
+   <Link href="/profile"><PenLine/><span><strong>Creative Studio</strong><small>Build your profile and portfolio</small></span><ArrowUpRight/></Link>
   </div></section>
   <section className="member-content-grid">
    <div className="member-panel"><div className="member-section-heading"><div><span className="eyebrow accent">YOUR WRITING</span><h2>Back to your desk</h2></div><Link href="/dashboard">All your work ↗</Link></div>
