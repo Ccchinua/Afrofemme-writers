@@ -59,7 +59,7 @@ export default async function AdminPage(){
  <MeetupProposalReview initial={(meetupProposals??[]) as any[]}/>
  <MeetupAttendance initial={attendance as any[]}/>
  <ChallengeManager initial={(challenges??[]) as any[]} userId={user.id}/>
- <EditorialReview initial={(submissions??[]) as any[]}/>
+ 
  <section className="feature-list"><div className="feature-list-head"><div><span className="eyebrow accent">MODERATION</span><h2>Reported content</h2></div><span>{reports?.filter(r=>r.status==="open").length??0} open</span></div><ModerationQueue reports={reports??[]}/></section>
  {roles.some(r=>r.role==="super_admin")&&<section className="feature-list" style={{marginTop:60}}><div className="feature-list-head"><div><span className="eyebrow accent">SUPER ADMIN ONLY</span><h2>Admin access requests</h2></div><span>{requests?.length??0} pending</span></div>{!requests?.length?<p className="feature-empty">No pending requests.</p>:requests.map((r:any)=><article className="feature-card" key={r.id}><h3>Request for administrator access</h3><p>{r.reason}</p><small>Requester: {r.requester_id} · {new Date(r.created_at).toLocaleDateString()}</small><p>Review and grant roles through the protected server-side approval workflow.</p></article>)}</section>}
  </main>;
