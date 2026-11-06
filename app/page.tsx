@@ -17,7 +17,7 @@ export default async function Home() {
   <div className="top-note">A home for Kenyan women who write · Always free to explore</div>
   <header className="header">
    <a className="brand" href="/" aria-label="Afrofemme Writers home"><span className="brand-name">afrofemme writers<span className="brand-period">.</span></span><span className="brand-sub">Her voice. Her story. Her world.</span></a>
-   <nav className="nav-links" aria-label="Main navigation"><a href="/stories">Read</a><a href="/annual">Annual</a><a href="/feed">Community</a><a href="/challenges">Challenges</a><a href="/writers">Writers</a></nav><details className="mobile-menu"><summary aria-label="Open navigation">Menu <span>＋</span></summary><div><a href="/stories">Reading lounge</a><a href="/feed">Community feed</a><a href="/challenges">Writing challenges</a><a href="#spaces">Our spaces</a><a href="#voices">Voices of Kenya</a><a href="/login">Sign in</a></div></details>
+   <nav className="nav-links" aria-label="Main navigation"><a href="/feed">Feed</a><a href="/discover">Explore</a><a href="/community">Circles</a><a href="/stories">Read</a><a href="/gatherings">Gatherings</a><a href="/inbox">Inbox</a></nav><details className="mobile-menu"><summary aria-label="Open navigation">Explore <span>＋</span></summary><div><a href="/feed">Community feed</a><a href="/discover">Explore writers</a><a href="/community">Sisters’ Circles</a><a href="/stories">Reading lounge</a><a href="/gatherings">Gatherings</a><a href="/inbox">Inbox</a><a href="/dashboard">Writer’s Studio</a><a href="/challenges">Challenges</a><a href="/login">Sign in</a></div></details>
    <a className="nav-cta" href="/signup">Join the circle <ArrowUpRight size={14}/></a>
   </header>
   <section className="hero kenya-hero">
@@ -28,6 +28,17 @@ export default async function Home() {
     <p className="hero-note"><MapPin size={13}/> Rooted in Kenya. Open to every story.</p>
    </div>
    <div className="hero-art" aria-label="Portrait celebrating Kenyan women writers"><div className="hero-photo"/><div className="hero-frame"/><div className="hero-stamp"><span>Sauti</span><span>Every voice belongs</span></div><div className="photo-caption">Kenyan women · Unwritten no more</div><div className="hero-art-label">01 / THE NEW KENYAN LITERARY VOICE</div></div>
+  </section>
+  <section className="social-entry" aria-label="Explore Afrofemme">
+   <div className="social-entry-head"><span className="eyebrow accent">THE AFROFEMME NETWORK</span><span>One home. Many ways to belong.</span></div>
+   <div className="social-entry-grid">
+    <a href="/feed"><span className="social-entry-icon">✳</span><small>01 / CONNECT</small><strong>The Feed</strong><p>Conversations, new work and everyday moments from the community.</p><b>Enter the feed ↗</b></a>
+    <a href="/discover"><span className="social-entry-icon">⌕</span><small>02 / FIND YOUR PEOPLE</small><strong>Explore</strong><p>Meet writers, follow new voices and discover stories across Kenya.</p><b>Find your people ↗</b></a>
+    <a href="/community"><span className="social-entry-icon">◎</span><small>03 / GROW TOGETHER</small><strong>Sisters’ Circles</strong><p>Share ideas, exchange feedback and build creative friendships.</p><b>Join a circle ↗</b></a>
+    <a href="/inbox"><span className="social-entry-icon">↗</span><small>04 / KEEP IN TOUCH</small><strong>Inbox</strong><p>Continue the conversations and connections that matter.</p><b>Open messages ↗</b></a>
+    <a href="/gatherings"><span className="social-entry-icon">⌖</span><small>05 / MEET IN REAL LIFE</small><strong>Gatherings</strong><p>Find workshops, book clubs, open mics and literary meetups.</p><b>See gatherings ↗</b></a>
+    <a href="/dashboard"><span className="social-entry-icon">✎</span><small>06 / MAKE YOUR MARK</small><strong>Writer’s Studio</strong><p>Shape your work, manage submissions and grow your writing practice.</p><b>Open your studio ↗</b></a>
+   </div>
   </section>
   <section className="kenya-ribbon" aria-label="Kenyan literary inspiration"><span>NAIROBI</span><i>✳</i><span>MOMBASA</span><i>✳</i><span>KISUMU</span><i>✳</i><span>NYERI</span><i>✳</i><span>EVERY COUNTY</span></section>
   <section className="manifesto" id="about"><div className="eyebrow">A note from our world</div><blockquote>“Our stories are not a footnote. They are the literature, the history, the becoming.”</blockquote><p>Afrofemme Writers is a home for Kenyan women to shape the stories of who we are, where we come from and what we are becoming.</p></section>
