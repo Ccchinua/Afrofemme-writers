@@ -874,3 +874,57 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transpare
 .af-moment:hover{border-bottom-color:#c94e36}
 .af-mobile-dock{border-top:3px solid transparent;background-image:linear-gradient(#fffaf3,#fffaf3),repeating-linear-gradient(135deg,#b95637 0 4px,#e9c49f 4px 8px,#536247 8px 12px,#fffaf3 12px 16px);background-origin:border-box;background-clip:padding-box,border-box}
 @media(max-width:760px){.af-topline:before,.af-topline:after{width:35px;opacity:.55}.af-hero-visual:before{left:-10px;width:20px}.af-nav:after{height:2px}}
+
+
+/* MOBILE POLISH — prevent cramped cards and clipped shortcut navigation */
+@media(max-width:760px){
+  .af-shortcuts{
+    display:flex;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    gap:0;
+    padding:13px 4px;
+    margin:0 15px;
+  }
+  .af-shortcuts::-webkit-scrollbar{display:none}
+  .af-shortcuts>a{
+    flex:0 0 154px;
+    min-width:154px;
+    grid-template-columns:34px minmax(0,1fr);
+    padding:6px 12px;
+    border-right:1px solid var(--af-line);
+  }
+  .af-shortcuts b{font-size:16px;white-space:nowrap}
+  .af-shortcuts small{font-size:9px;white-space:normal}
+  .af-moments{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:2px 1px 10px;
+    margin-right:-15px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+  }
+  .af-moments::-webkit-scrollbar{display:none}
+  .af-moment{
+    flex:0 0 132px;
+    width:132px;
+    height:178px;
+    padding:12px;
+    scroll-snap-align:start;
+  }
+  .af-moment b{font-size:16px;line-height:1.15;overflow-wrap:normal}
+  .af-moment small{font-size:9px;line-height:1.3}
+  .af-moment-own{justify-content:center;gap:4px}
+  .af-moment-own span{flex:0 0 34px;margin:0 0 8px}
+  .af-moment-own b{white-space:normal}
+  .af-moment-own small{display:block;white-space:normal}
+  .af-empty{min-height:250px;padding:32px 20px;align-content:center}
+  .af-empty b{font-size:21px;line-height:1.15;max-width:290px}
+  .af-empty p{font-size:13px;line-height:1.45;max-width:300px}
+  .af-section-title{align-items:flex-end;gap:12px}
+  .af-section-title>a{flex:0 0 auto;max-width:105px;line-height:1.5}
+}
