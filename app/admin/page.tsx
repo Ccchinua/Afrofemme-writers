@@ -2,7 +2,6 @@ import Link from "next/link";
 import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";
 import ModerationQueue from "./moderation-queue";
-import EditorialReview from "./editorial-review";
 import MeetupProposalReview from "./meetup-proposal-review";
 import MeetupAttendance from "./meetup-attendance";
 import ChallengeManager from "./challenge-manager";
@@ -14,7 +13,6 @@ export default async function AdminPage(){
  const {data:roles}=await db.from("app_roles").select("role").eq("user_id",user.id);
  if(!roles?.some(r=>r.role==="admin"||r.role==="super_admin"))redirect("/dashboard");
  const {data:challenges}=await db.from("community_challenges").select("id,title,description,prompt,starts_at,ends_at,status,created_at").order("created_at",{ascending:false}).limit(30);
- const {data:submissions}=await db.from("editorial_submissions").select("id,story_id,author_id,status,author_note,editor_note,submitted_at,stories(title,slug,excerpt)").order("submitted_at",{ascending:false}).limit(100);
  const {data:meetupProposals}=await db.from("meetup_proposals").select("id,proposer_id,title,description,event_type,county,venue,proposed_at,capacity,host_name,contact_note,status").eq("status","pending").order("created_at",{ascending:true}).limit(100);
  const {data:reports}=await db.from("content_reports").select("id,target_type,target_id,reason,status,created_at,reporter_id").order("created_at",{ascending:false}).limit(100);
  const {data:meetupEvents}=await db.from("literary_events").select("id,title,starts_at,event_registrations(id,user_id,attendance_status,registered_at)").eq("is_meetup",true).order("starts_at",{ascending:false}).limit(50);
@@ -45,7 +43,7 @@ export default async function AdminPage(){
    <section className="sa-metrics">{metrics.map((m)=><Link href={m.href} className={"sa-metric "+(m.label==="Open reports"&&m.value>0?"sa-alert":"")} key={m.label}><span>{m.symbol}</span><small>{m.label}</small><strong>{m.value.toLocaleString("en-KE")}</strong><em>{m.detail} ↗</em></Link>)}</section>
    <section className="sa-workspace"><div className="sa-main-panel"><div className="sa-panel-head"><div><span className="sa-kicker">PLATFORM OPERATIONS</span><h2>Keep the network healthy.</h2></div><span className="sa-status">● SYSTEM OVERVIEW</span></div><div className="sa-action-grid">
     <Link href="/admin#reports"><b>01</b><strong>Trust &amp; safety</strong><p>Review reports, respond to harmful content and keep the community safe.</p><span>Open moderation ↗</span></Link>
-    <Link href="/admin"><b>02</b><strong>Editorial desk</strong><p>Review story submissions, editorial decisions and publishing quality.</p><span>Manage editorial ↗</span></Link>
+    <Link href="/stories"><b>02</b><strong>Open publishing</strong><p>Writers publish their own stories directly. Admin attention stays focused on community safety.</p><span>View the Reading Lounge ↗</span></Link>
     <Link href="/admin"><b>03</b><strong>Community programming</strong><p>Oversee writing challenges, circles, gatherings and member proposals.</p><span>Manage programmes ↗</span></Link>
     <Link href="/admin#requests"><b>04</b><strong>Administrator access</strong><p>Review pending requests for elevated platform responsibilities.</p><span>{requests?.length??0} pending requests ↗</span></Link>
     <Link href="/discover"><b>05</b><strong>Discovery &amp; growth</strong><p>Explore the member network and see how the public community appears.</p><span>Explore network ↗</span></Link>
@@ -57,7 +55,7 @@ export default async function AdminPage(){
  }
  return <main className="feature-page">
  <header className="feature-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/dashboard">Writer’s desk</Link><Link href="/gatherings">Gatherings</Link><Link href="/">Home</Link></nav></header>
- <section className="feature-intro"><span className="eyebrow accent">PRIVATE · EDITORIAL OPERATIONS</span><h1>Care for the<br/><em>community.</em></h1><p>Review reports, protect the writing space and keep editorial decisions accountable.</p></section>
+ <section className="feature-intro"><span className="eyebrow accent">PRIVATE · EDITORIAL OPERATIONS</span><h1>Care for the<br/><em>community.</em></h1><p>Protect the writing space. Review reports and act on genuine community-guideline violations.</p></section>
  <MeetupProposalReview initial={(meetupProposals??[]) as any[]}/>
  <MeetupAttendance initial={attendance as any[]}/>
  <ChallengeManager initial={(challenges??[]) as any[]} userId={user.id}/>
