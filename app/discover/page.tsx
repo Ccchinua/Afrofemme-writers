@@ -45,13 +45,13 @@ export default async function DiscoverPage() {
     user ? db.from("bookmarks").select("story_id").eq("user_id", user.id).order("created_at", { ascending: false }).limit(80) : Promise.resolve({ data: [] }),
     user ? db.from("story_likes").select("story_id").eq("user_id", user.id).order("created_at", { ascending: false }).limit(80) : Promise.resolve({ data: [] }),
     user ? db.from("reading_history").select("story_id,progress_percent").eq("user_id", user.id).order("last_read_at", { ascending: false }).limit(80) : Promise.resolve({ data: [] }),
-    user ? db.from("member_blocks").select("blocked_id").eq("blocker_id", user.id) : Promise.resolve({ data: [] })
+    user ? db.from("member_blocks").select("blocker_id,blocked_id").or(`blocker_id.eq.${user.id},blocked_id.eq.${user.id}`) : Promise.resolve({ data: [] })
   ]);
 
   const stories = (storyResult.data ?? []) as Story[];
   const storyIds = stories.map((story) => story.id);
   const followed = new Set((followResult.data ?? []).map((row: { followed_id: string }) => row.followed_id));
-  const blocked = new Set((blockResult.data ?? []).map((row: { blocked_id: string }) => row.blocked_id));
+  const blocked = new Set((blockResult.data ?? []).map((row: { blocker_id: string; blocked_id: string }) => row.blocker_id === user?.id ? row.blocked_id : row.blocker_id));
   const savedIds = new Set((bookmarkResult.data ?? []).map((row: { story_id: string }) => row.story_id));
   const likedIds = new Set((likeResult.data ?? []).map((row: { story_id: string }) => row.story_id));
   const readIds = new Set((historyResult.data ?? []).filter((row: { progress_percent: number }) => row.progress_percent >= 20).map((row: { story_id: string }) => row.story_id));
