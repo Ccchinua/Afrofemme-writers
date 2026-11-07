@@ -4,19 +4,55 @@ import {createClient} from "@/lib/supabase/server";
 import FollowButton from "../follow-button";
 import MessageButton from "../message-button";
 import BlockButton from "../block-button";
+
 export const dynamic="force-dynamic";
+
 export default async function WriterProfilePage({params}:{params:Promise<{username:string}>}){
- const {username}=await params;const db=await createClient();const {data:{user}}=await db.auth.getUser();
- const {data:profile}=await db.from("profiles").select("id,display_name,username,bio,county,preferred_language,website_url,avatar_url,profile_frame").eq("username",username).maybeSingle();if(!profile)notFound();
- const [{data:stories},{data:posts},{count:followers},{count:following},{data:blockedRow}]=await Promise.all([
+ const {username}=await params;
+ const db=await createClient();
+ const {data:{user}}=await db.auth.getUser();
+ const {data:profile}=await db.from("profiles").select("id,display_name,username,bio,county,preferred_language,website_url,avatar_url,profile_frame").eq("username",username).maybeSingle();
+ if(!profile)notFound();
+
+ let blockedByMe=false;
+ if(user&&user.id!==profile.id){
+  const [{data:blockedRows},{data:ownBlock}]=await Promise.all([
+   db.rpc("get_blocked_member_ids"),
+   db.from("member_blocks").select("blocked_id").eq("blocker_id",user.id).eq("blocked_id",profile.id).maybeSingle()
+  ]);
+  const blockedIds=new Set((blockedRows??[]).map((row:{member_id:string})=>row.member_id));
+  blockedByMe=!!ownBlock;
+  if(blockedIds.has(profile.id)&&!blockedByMe)notFound();
+ }
+
+ const [{data:stories},{data:posts},{count:followers},{count:following}]=await Promise.all([
   db.from("stories").select("id,title,slug,excerpt,category,published_at").eq("author_id",profile.id).eq("status","published").order("published_at",{ascending:false}).limit(30),
-  user?db.from("circle_posts").select("id,title,body,media_url,media_type,hashtags,created_at").eq("author_id",profile.id).eq("is_hidden",false).order("created_at",{ascending:false}).limit(12):Promise.resolve({data:[]}),
+  user&&!blockedByMe?db.from("circle_posts").select("id,title,body,media_url,media_type,hashtags,created_at").eq("author_id",profile.id).eq("is_hidden",false).order("created_at",{ascending:false}).limit(12):Promise.resolve({data:[]}),
   db.from("follows").select("*",{count:"exact",head:true}).eq("followed_id",profile.id),
-  db.from("follows").select("*",{count:"exact",head:true}).eq("follower_id",profile.id),
-  user&&user.id!==profile.id?db.from("member_blocks").select("blocked_id").eq("blocker_id",user.id).eq("blocked_id",profile.id).maybeSingle():Promise.resolve({data:null})
+  db.from("follows").select("*",{count:"exact",head:true}).eq("follower_id",profile.id)
  ]);
- return <main className="feature-page"><header className="feature-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/writers">Find writers</Link><Link href="/stories">Reading lounge</Link><Link href="/community">Sisters’ Circle</Link>{user&&<Link href="/inbox">Inbox</Link>}</nav></header>
- <section className="feature-intro"><span className="eyebrow accent">WRITER PROFILE · {profile.county||"KENYA"}</span><div className={"writer-profile-heading writer-frame-"+(profile.profile_frame||"woven")}><span className="writer-frame-label">✦ AFROFEMME WRITER ✦</span>{profile.avatar_url?<img className="writer-profile-photo" src={profile.avatar_url} alt={profile.display_name||"Writer portrait"}/>:null}<div><h1>{profile.display_name||"A Kenyan writer"}<br/><em>@{profile.username}</em></h1><div className="writer-profile-stats"><span><strong>{followers??0}</strong> followers</span><span><strong>{following??0}</strong> following</span></div><div className="writer-social-actions">{user&&user.id!==profile.id&&<><FollowButton writerId={profile.id}/><MessageButton writerId={profile.id} writerName={profile.display_name||"this writer"}/><BlockButton writerId={profile.id} initialBlocked={!!blockedRow}/></>}</div></div></div><p>{profile.bio||"A member of the Afrofemme Writers community."}</p>{profile.preferred_language&&<p>Writing in {profile.preferred_language}</p>}{profile.website_url&&<a className="feature-link" href={profile.website_url} target="_blank" rel="noreferrer">Portfolio / website ↗</a>}</section>
- <section className="feature-list"><div className="feature-list-head"><div><span className="eyebrow accent">COMMUNITY POSTS</span><h2>From {profile.display_name||"this writer"}</h2></div><span>{posts?.length??0} posts</span></div>{!user?<p className="feature-empty">Sign in to explore this writer’s community posts.</p>:!posts?.length?<p className="feature-empty">No community posts yet.</p>:posts.map(p=><article className="feature-card social-post-card" key={p.id}><h3>{p.title}</h3><p>{p.body}</p>{p.media_url&&<div className="social-post-media">{p.media_type==="video"?<video src={p.media_url} controls playsInline/>:<img src={p.media_url} alt={"Photo shared by "+(profile.display_name||"a writer")}/>}</div>}{!!p.hashtags?.length&&<div className="social-hashtags">{p.hashtags.map((tag:string)=><Link key={tag} href={"/feed?tag="+encodeURIComponent(tag)}>#{tag}</Link>)}</div>}<small>{new Date(p.created_at).toLocaleDateString("en-KE")}</small></article>)}</section>
- <section className="feature-list"><div className="feature-list-head"><div><span className="eyebrow accent">PUBLISHED WORK</span><h2>Stories by {profile.display_name||"this writer"}</h2></div><span>{stories?.length??0} stories</span></div>{!stories?.length?<p className="feature-empty">No published stories yet. Check back as this writer shares more work.</p>:stories.map(s=><article className="feature-card" key={s.id}><div className="feature-card-meta"><span>{s.category}</span><span>{s.published_at?new Date(s.published_at).toLocaleDateString():""}</span></div><h3><Link className="feature-link" href={"/stories/"+s.slug}>{s.title}</Link></h3><p>{s.excerpt}</p></article>)}</section></main>;
+
+ return <main className="feature-page">
+  <header className="feature-header"><Link href="/" className="feature-brand">afrofemme writers.</Link><nav><Link href="/writers">Find writers</Link><Link href="/stories">Reading lounge</Link><Link href="/community">Sisters’ Circle</Link>{user&&<Link href="/inbox">Inbox</Link>}</nav></header>
+  <section className="feature-intro">
+   <span className="eyebrow accent">WRITER PROFILE · {profile.county||"KENYA"}</span>
+   <div className={"writer-profile-heading writer-frame-"+(profile.profile_frame||"woven")}>
+    <span className="writer-frame-label">✦ AFROFEMME WRITER ✦</span>
+    {profile.avatar_url?<img className="writer-profile-photo" src={profile.avatar_url} alt={profile.display_name||"Writer portrait"}/>:null}
+    <div>
+     <h1>{profile.display_name||"A Kenyan writer"}<br/><em>@{profile.username}</em></h1>
+     <div className="writer-profile-stats"><span><strong>{followers??0}</strong> followers</span><span><strong>{following??0}</strong> following</span></div>
+     <div className="writer-social-actions">{user&&user.id!==profile.id&&<>{!blockedByMe&&<><FollowButton writerId={profile.id}/><MessageButton writerId={profile.id} writerName={profile.display_name||"this writer"}/></>}<BlockButton writerId={profile.id} initialBlocked={blockedByMe}/></>}</div>
+    </div>
+   </div>
+   {blockedByMe?<p>You have blocked this member. Their community posts and social actions are hidden until you unblock them.</p>:<p>{profile.bio||"A member of the Afrofemme Writers community."}</p>}
+   {profile.preferred_language&&<p>Writing in {profile.preferred_language}</p>}
+   {profile.website_url&&!blockedByMe&&<a className="feature-link" href={profile.website_url} target="_blank" rel="noreferrer">Portfolio / website ↗</a>}
+  </section>
+  {!blockedByMe&&<section className="feature-list">
+   <div className="feature-list-head"><div><span className="eyebrow accent">COMMUNITY POSTS</span><h2>From {profile.display_name||"this writer"}</h2></div><span>{posts?.length??0} posts</span></div>
+   {!user?<p className="feature-empty">Sign in to explore this writer’s community posts.</p>:!posts?.length?<p className="feature-empty">No community posts yet.</p>:posts.map(p=><article className="feature-card social-post-card" key={p.id}><h3>{p.title}</h3><p>{p.body}</p>{p.media_url&&<div className="social-post-media">{p.media_type==="video"?<video src={p.media_url} controls playsInline/>:<img src={p.media_url} alt={"Photo shared by "+(profile.display_name||"a writer")}/>}</div>}{!!p.hashtags?.length&&<div className="social-hashtags">{p.hashtags.map((tag:string)=><Link key={tag} href={"/feed?tag="+encodeURIComponent(tag)}>#{tag}</Link>)}</div>}<small>{new Date(p.created_at).toLocaleDateString("en-KE")}</small></article>)}
+  </section>}
+  <section className="feature-list"><div className="feature-list-head"><div><span className="eyebrow accent">PUBLISHED WORK</span><h2>Stories by {profile.display_name||"this writer"}</h2></div><span>{stories?.length??0} stories</span></div>{!stories?.length?<p className="feature-empty">No published stories yet. Check back as this writer shares more work.</p>:stories.map(s=><article className="feature-card" key={s.id}><div className="feature-card-meta"><span>{s.category}</span><span>{s.published_at?new Date(s.published_at).toLocaleDateString():""}</span></div><h3><Link className="feature-link" href={"/stories/"+s.slug}>{s.title}</Link></h3><p>{s.excerpt}</p></article>)}</section>
+ </main>;
 }
