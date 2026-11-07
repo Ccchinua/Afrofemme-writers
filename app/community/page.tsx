@@ -7,7 +7,7 @@ export const metadata={title:"Sisters’ Circle"};
 export default async function CommunityPage(){
  const db=await createClient();const {data:{user}}=await db.auth.getUser();if(!user)redirect("/login?next=/community");
  const {data:blockedRows}=await db.rpc("get_blocked_member_ids");
- const blockedIds=new Set((blockedRows??[]).map(row=>row.member_id));
+ const blockedIds=new Set((blockedRows??[]).map((row:{member_id:string})=>row.member_id));
  const {data:allPosts,error}=await db.from("circle_posts").select("id,title,body,topic,created_at,author_id,media_url,media_type,hashtags").eq("is_hidden",false).order("created_at",{ascending:false}).limit(50);
  const posts=(allPosts??[]).filter(post=>!blockedIds.has(post.author_id));
  const ids=(posts??[]).map(p=>p.id),authorIds=[...new Set((posts??[]).map(p=>p.author_id))];
