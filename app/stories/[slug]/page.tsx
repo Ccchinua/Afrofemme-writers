@@ -4,6 +4,7 @@ import {notFound} from "next/navigation";
 import {ArrowLeft,ArrowUpRight,Clock,MapPin} from "lucide-react";
 import {createClient} from "@/lib/supabase/server";
 import StoryCommunity from "./story-community";
+import ReadingProgress from "./reading-progress";
 export const dynamic="force-dynamic";
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
  const {slug}=await params;const db=await createClient();
@@ -24,6 +25,6 @@ export default async function StoryPage({params}:{params:Promise<{slug:string}>}
  <article className="article-shell"><Link href="/stories" className="article-back"><ArrowLeft size={15}/> Back to the reading lounge</Link><header className="article-heading"><span className="eyebrow accent">{story.category||"Story"} · KENYA</span><h1>{story.title}</h1>{story.excerpt&&<p className="article-deck">{story.excerpt}</p>}<div className="article-meta"><span>BY {profile?.display_name||"A Kenyan writer"}</span>{profile?.county&&<span><MapPin size={13}/>{profile.county}</span>}<span><Clock size={13}/>{minutes} MIN READ</span>{story.published_at&&<time dateTime={story.published_at}>{new Date(story.published_at).toLocaleDateString("en-KE",{day:"numeric",month:"long",year:"numeric"})}</time>}</div></header>
  {story.cover_image_url&&<div className="article-cover" style={{backgroundImage:"url("+JSON.stringify(story.cover_image_url)+")"}} role="img" aria-label="Story cover"/>}
  <div className="article-body">{content.split(/\n{2,}/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div>
- <footer className="article-end"><span>✳</span><p>Thank you for spending time with this story.</p><Link href="/stories">Discover another story <ArrowUpRight size={14}/></Link></footer><StoryCommunity storyId={story.id}/></article>
+ <footer className="article-end"><span>✳</span><p>Thank you for spending time with this story.</p><Link href="/stories">Discover another story <ArrowUpRight size={14}/></Link></footer><ReadingProgress storyId={story.id}/><StoryCommunity storyId={story.id}/></article>
  <footer className="reading-footer"><Link href="/">Afrofemme Writers.</Link><span>Her voice. Her story. Her world.</span><Link href="/signup">Share your writing ↗</Link></footer></main>;
 }
