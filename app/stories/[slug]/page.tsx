@@ -9,7 +9,7 @@ export const dynamic="force-dynamic";
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
  const {slug}=await params;const db=await createClient();
  const {data:story}=await db.from("stories").select("title,excerpt,cover_image_url").eq("slug",slug).eq("status","published").maybeSingle();
- if(!story)return {title:"Story | Afrofemme Writers"};
+ if(!story)return {title:"Story | Afrofemme Writers",robots:{index:false,follow:false}};
  const description=story.excerpt||"Read this story from the Afrofemme Writers community.";
  const images=story.cover_image_url?[{url:story.cover_image_url}]:[];
  return {title:story.title+" | Afrofemme Writers",description,openGraph:{title:story.title,description,type:"article",images},twitter:{card:images.length?"summary_large_image":"summary",title:story.title,description,images:story.cover_image_url?[story.cover_image_url]:[]}};
