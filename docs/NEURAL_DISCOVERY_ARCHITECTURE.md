@@ -54,3 +54,17 @@ Each event should include `id`, `member_id`, `content_id` (nullable for profile 
 
 ## Non-goals for the first release
 No black-box "AI decides what you see", no private-message analysis, no paid model dependency, no automatic moderation decisions, and no claim that a neural model is trained before sufficient high-quality interaction data exists.
+
+## Implemented baseline status — 7 November 2026
+
+The current `/discover` route is a deterministic, server-rendered story ranker, not a neural model. Its initial score is:
+
+- 0.28 category affinity, inferred only from the member's own saved, liked and meaningfully read published stories.
+- 0.22 followed-writer relationship.
+- 0.18 freshness decay over a 60-day window.
+- 0.12 normalized aggregate public likes and visible comments.
+- 0.20 exploration bonus for stories the member has not already saved, liked or meaningfully read.
+
+The first release uses existing `bookmarks`, `story_likes`, `reading_history`, `follows`, published `stories`, and aggregate public engagement. It does not use private messages, raw search queries, sensitive profile inferences or off-platform tracking. It applies a symmetric member-block exclusion and limits the first eight recommendations to at most two stories per writer. The feed's chronological and Following views remain available as alternatives.
+
+There is not yet enough activity to evaluate relevance or train embeddings: the production snapshot on 7 November 2026 showed no published stories, follows, bookmarks, reading-history rows or story likes. No model accuracy or recommendation lift is claimed. Format preferences and a dedicated per-topic preference store are deferred until members can explicitly set them; a dedicated "not interested" control and a stored recommendations opt-out are also future work. Until those controls exist, members can avoid personalized ranking by using the chronological feed or Following view.
