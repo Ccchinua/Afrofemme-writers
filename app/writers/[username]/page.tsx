@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";
 import FollowButton from "../follow-button";
@@ -6,6 +7,23 @@ import MessageButton from "../message-button";
 import BlockButton from "../block-button";
 
 export const dynamic="force-dynamic";
+
+export async function generateMetadata({params}:{params:Promise<{username:string}>}):Promise<Metadata>{
+ const {username}=await params;
+ const db=await createClient();
+ const {data:profile}=await db.from("profiles").select("display_name,username,bio,county,avatar_url").eq("username",username).maybeSingle();
+ if(!profile)return {title:"Writer | Afrofemme Writers",robots:{index:false,follow:false}};
+ const name=profile.display_name||"Afrofemme writer";
+ const title=name+" | Afrofemme Writers";
+ const description=(profile.bio||("Discover stories and community writing by "+name+" in the Afrofemme Writers network.")).slice(0,160);
+ const images=profile.avatar_url?[{url:profile.avatar_url}]:[];
+ return {
+  title,
+  description,
+  openGraph:{title,description,type:"profile",images},
+  twitter:{card:images.length?"summary_large_image":"summary",title,description,images:profile.avatar_url?[profile.avatar_url]:[]}
+ };
+}
 
 export default async function WriterProfilePage({params}:{params:Promise<{username:string}>}){
  const {username}=await params;
