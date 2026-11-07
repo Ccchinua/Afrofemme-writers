@@ -971,7 +971,7 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transpare
 .af-section-title h2{color:#55213c}
 .af-moment{border-radius:13px;box-shadow:0 8px 20px rgba(76,39,42,.11);overflow:hidden}
 .af-moment-one{background:linear-gradient(155deg,rgba(49,88,61,.18),rgba(49,88,61,.88)),url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80") center/cover!important}
-.af-moment-two{background:linear-gradient(155deg,rgba(199,71,45,.22),rgba(130,37,53,.9)),url("https://images.unsplash.com/photo-1455390582262-044c agrav?auto=format&fit=crop&w=700&q=80") center/cover!important}
+.af-moment-two{background:radial-gradient(circle at 20% 20%,rgba(255,205,83,.45),transparent 35%),linear-gradient(155deg,#c7472d,#822535)!important}
 .af-moment-three{background:linear-gradient(155deg,rgba(240,165,26,.15),rgba(89,33,61,.9)),url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80") center/cover!important}
 .af-moment-own{background:linear-gradient(145deg,#f2b52b,#e56a43)!important;color:#54213b}
 .af-post,.af-side-card,.af-story{border:1px solid #e8d2b7;border-radius:15px;box-shadow:0 9px 26px rgba(80,39,43,.07)}
