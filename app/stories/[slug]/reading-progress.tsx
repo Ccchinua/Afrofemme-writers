@@ -16,13 +16,14 @@ export default function ReadingProgress({storyId}:{storyId:string}){
   let saveTimer:ReturnType<typeof setTimeout>|null=null;
 
   const save=(value:number)=>{
-   if(!userId)return;
+   const ownerId=userId;
+   if(!ownerId)return;
    if(value<lastSaved.current+5&&value!==100)return;
    lastSaved.current=Math.max(lastSaved.current,value);
    if(saveTimer)clearTimeout(saveTimer);
    saveTimer=setTimeout(async()=>{
     const {error}=await db.from("reading_history").upsert({
-     user_id:userId,
+     user_id:ownerId,
      story_id:storyId,
      progress_percent:value,
      last_read_at:new Date().toISOString()
