@@ -928,3 +928,92 @@ body{background:radial-gradient(ellipse at 12% 8%,rgba(217,165,43,.12),transpare
   .af-section-title{align-items:flex-end;gap:12px}
   .af-section-title>a{flex:0 0 auto;max-width:105px;line-height:1.5}
 }
+
+
+/* AFROFEMME COLOUR + VISIBLE BEADWORK IDENTITY — 2026 refresh */
+.af-home{
+  --af-paper:#fff4e6;--af-cream:#fffaf2;--af-plum:#59213d;--af-rust:#c7472d;
+  --af-orange:#f0a51a;--af-muted:#725b55;--af-line:#ead2b8;
+  background:
+    radial-gradient(ellipse at 8% 18%,rgba(238,165,26,.17),transparent 28%),
+    radial-gradient(ellipse at 92% 42%,rgba(198,64,91,.10),transparent 27%),var(--af-paper);
+}
+.af-topline{
+  background:linear-gradient(90deg,#55213c,#8f263e 42%,#31583d 78%,#55213c);
+  border-bottom:4px solid transparent;
+  border-image:repeating-linear-gradient(90deg,#f4b323 0 9px,#fff0d5 9px 14px,#c74431 14px 23px,#fff0d5 23px 28px,#31583d 28px 37px,#fff0d5 37px 42px) 4;
+}
+.af-nav{background:rgba(255,250,242,.96);box-shadow:0 7px 22px rgba(75,34,44,.055)}
+.af-wordmark{color:#55213c}
+.af-wordmark span{color:#e14d32}
+.af-nav nav a.active{color:#c7472d}
+.af-nav-actions>a:not(.af-join){color:#31583d}
+.af-join,.af-primary{background:linear-gradient(115deg,#c7472d,#9e2948)!important;color:#fffaf2!important;box-shadow:0 7px 18px rgba(157,41,72,.18)}
+.af-hero{position:relative}
+.af-hero-copy{position:relative}
+.af-eyebrow{color:#a43a37}
+.af-hero h1 em,.af-section-title h2 em{color:#c7472d}
+.af-hero-visual{border-radius:2px}
+.af-hero-image{outline:5px solid #f0a51a;outline-offset:7px;box-shadow:16px 18px 0 #31583d}
+.af-image-note{background:linear-gradient(145deg,#59213d,#8d2944)!important;color:#fff6e9;border-top:5px solid #f0a51a!important}
+.af-image-note strong i{color:#ffc45c}
+.af-orbit{background:#31583d!important;color:#fff5e5!important;border:3px solid #f0a51a;box-shadow:0 0 0 5px #fff4e6}
+.af-hero-foot{color:#31583d}
+.af-shortcuts{border-top:1px solid #e8d2b7;border-bottom:1px solid #e8d2b7;background:rgba(255,250,242,.72)}
+.af-shortcuts>a:nth-child(6n+1)>span{background:#c7472d;color:white}
+.af-shortcuts>a:nth-child(6n+2)>span{background:#f0a51a;color:#55213c}
+.af-shortcuts>a:nth-child(6n+3)>span{background:#31583d;color:white}
+.af-shortcuts>a:nth-child(6n+4)>span{background:#59213d;color:white}
+.af-shortcuts>a:nth-child(6n+5)>span{background:#d45c78;color:white}
+.af-shortcuts>a:nth-child(6n)>span{background:#d98a22;color:#34231d}
+.af-shortcuts>a>span{border-radius:13px;box-shadow:0 4px 12px rgba(74,36,39,.12)}
+.af-content{background:transparent}
+.af-section-title h2{color:#55213c}
+.af-moment{border-radius:13px;box-shadow:0 8px 20px rgba(76,39,42,.11);overflow:hidden}
+.af-moment-one{background:linear-gradient(155deg,rgba(49,88,61,.18),rgba(49,88,61,.88)),url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80") center/cover!important}
+.af-moment-two{background:linear-gradient(155deg,rgba(199,71,45,.22),rgba(130,37,53,.9)),url("https://images.unsplash.com/photo-1455390582262-044c agrav?auto=format&fit=crop&w=700&q=80") center/cover!important}
+.af-moment-three{background:linear-gradient(155deg,rgba(240,165,26,.15),rgba(89,33,61,.9)),url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80") center/cover!important}
+.af-moment-own{background:linear-gradient(145deg,#f2b52b,#e56a43)!important;color:#54213b}
+.af-post,.af-side-card,.af-story{border:1px solid #e8d2b7;border-radius:15px;box-shadow:0 9px 26px rgba(80,39,43,.07)}
+.af-post{background:linear-gradient(145deg,#fffaf2,#fff0df)}
+.af-post:nth-child(3n+2){border-top:4px solid #c7472d}
+.af-post:nth-child(3n){border-top:4px solid #31583d}
+.af-post-avatar{background:linear-gradient(135deg,#59213d,#c7472d)!important;color:#fff}
+.af-post-topic{background:#f8df9e;color:#672b36;border-radius:20px;padding:5px 9px}
+.af-post-actions{color:#a13b43}
+.af-story{overflow:hidden;background:#fffaf2}
+.af-story-image{border-radius:10px 10px 0 0}
+.af-story>span{color:#b43e34}
+.af-side-card{background:#fffaf2}
+.af-manifesto{background:linear-gradient(145deg,#59213d,#8d2944)!important;color:#fff6e9}
+.af-manifesto .af-eyebrow,.af-manifesto p{color:#f5d5b7}
+.af-manifesto em{color:#ffc35a}
+.af-events{border-top:5px solid #31583d}
+.af-challenge{background:linear-gradient(145deg,#f4bd45,#e88943)!important;color:#51263a}
+.af-challenge .af-eyebrow,.af-challenge p{color:#6b3033}
+.af-challenge-mark{color:#fff5e4}
+.af-join-card{background:linear-gradient(145deg,#31583d,#1f4938)!important;color:#fff6e9}
+.af-join-card>span{color:#f4c45b}
+.af-mobile-dock{background:#fffaf2}
+.af-mobile-dock .af-dock-plus{background:linear-gradient(135deg,#c7472d,#8d2944)}
+/* Strong beadwork motif: repeated red, gold, white and forest-green geometry */
+.af-nav:after,.af-footer:before{
+  content:"";display:block;height:8px;
+  background:repeating-linear-gradient(135deg,#c7472d 0 7px,#fff4e6 7px 12px,#f0a51a 12px 19px,#fff4e6 19px 24px,#31583d 24px 31px,#fff4e6 31px 36px,#59213d 36px 43px,#fff4e6 43px 48px);
+}
+.af-footer{position:relative}
+.af-footer:before{position:absolute;left:0;right:0;top:0;height:6px}
+.feature-page{background:radial-gradient(ellipse at 90% 8%,rgba(240,165,26,.13),transparent 25%),#fff4e6}
+.feature-header{border-bottom:5px solid transparent;border-image:repeating-linear-gradient(90deg,#c7472d 0 8px,#fff4e6 8px 12px,#f0a51a 12px 20px,#fff4e6 20px 24px,#31583d 24px 32px,#fff4e6 32px 36px) 5}
+.feature-intro:after{opacity:.75!important;width:145px!important;height:145px!important}
+.feed-card{border-radius:16px!important;background:linear-gradient(145deg,#fffaf2,#fff0df)!important}
+.feed-card:nth-child(3n+2){border-top:4px solid #c7472d}
+.feed-card:nth-child(3n){border-top:4px solid #31583d}
+.feed-kind{background:#f7dda0!important;color:#692c3b!important}
+@media(max-width:760px){
+ .af-hero-image{box-shadow:9px 11px 0 #31583d}
+ .af-topline{font-size:8px;letter-spacing:.08em}
+ .af-footer{padding-top:28px}
+ .feature-intro:after{opacity:.65!important;width:74px!important;height:74px!important}
+}
+@media(prefers-reduced-motion:reduce){.af-nav nav a,.af-shortcuts>a,.af-moment{transition:none!important}}
