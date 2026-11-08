@@ -1,0 +1,96 @@
+/* Afrofemme Writers visual foundation — semantic tokens and theme primitives.
+   Legacy tokens remain aliases during the reversible migration. */
+:root {
+  color-scheme: light;
+  --af-emerald: #176B50;
+  --af-ivory: #FFF7EA;
+  --af-royal-blue: #3157A4;
+  --af-burgundy: #852D4B;
+  --af-plum: #69416F;
+  --af-coral: #F07869;
+  --af-amber: #E5AC43;
+  --af-peach: #F5C5A8;
+  --af-ink: #242438;
+
+  --color-canvas: var(--af-ivory);
+  --color-surface: #FFFCF6;
+  --color-surface-raised: #FFFFFF;
+  --color-text: var(--af-ink);
+  --color-text-muted: #625F6B;
+  --color-border: #E7DDCF;
+  --color-primary: var(--af-emerald);
+  --color-primary-contrast: #FFFFFF;
+  --color-secondary: var(--af-royal-blue);
+  --color-accent: var(--af-coral);
+  --color-highlight: var(--af-amber);
+  --color-error: var(--af-burgundy);
+  --color-focus: var(--af-emerald);
+  --color-shadow: rgb(36 36 56 / 9%);
+
+  /* Legacy aliases: keep old components stable while each screen migrates. */
+  --paper: var(--color-canvas);
+  --paper-deep: #F1E8DA;
+  --ink: var(--color-text);
+  --muted: var(--color-text-muted);
+  --clay: var(--af-coral);
+  --clay-dark: var(--af-burgundy);
+  --wine: var(--af-burgundy);
+  --olive: var(--af-emerald);
+  --gold: var(--af-amber);
+  --line: var(--color-border);
+  --kenya-red: var(--af-burgundy);
+  --kenya-green: var(--af-emerald);
+  --kenya-black: var(--af-ink);
+  --kenya-gold: var(--af-amber);
+  --kenya-earth: var(--af-peach);
+  --kenya-blue: var(--af-royal-blue);
+  --kenya-purple: var(--af-plum);
+  --kenya-coral: var(--af-coral);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-canvas: #242438;
+  --color-surface: #30283B;
+  --color-surface-raised: #3A3045;
+  --color-text: var(--af-ivory);
+  --color-text-muted: #D2C6CB;
+  --color-border: #59495B;
+  --color-primary: #238464;
+  --color-primary-contrast: #FFFFFF;
+  --color-secondary: #8DA9EA;
+  --color-accent: #F28B7D;
+  --color-highlight: #E5AC43;
+  --color-error: #F09AAF;
+  --color-focus: #64B99B;
+  --color-shadow: rgb(0 0 0 / 25%);
+
+  --paper-deep: #30283B;
+  --line: var(--color-border);
+}
+
+html { color-scheme: light; }
+html[data-theme="dark"] { color-scheme: dark; }
+body {
+  background: var(--color-canvas);
+  color: var(--color-text);
+  transition: background-color 220ms ease, color 220ms ease;
+}
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+::selection { background: var(--af-peach); color: var(--af-ink); }
+
+.af-bead-mark { display: inline-block; flex: 0 0 auto; vertical-align: middle; }
+.af-bead-mark circle { vector-effect: non-scaling-stroke; }
+.af-bead-mark .bead-shadow { opacity: .3; }
+.af-bead-mark .bead-highlight { opacity: .92; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
