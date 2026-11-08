@@ -1,13 +1,43 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const PRIVATE_OR_AUTH_ROUTES = [
+  "/admin",
+  "/auth/callback",
+  "/community",
+  "/dashboard",
+  "/feed",
+  "/forgot-password",
+  "/inbox",
+  "/journey",
+  "/login",
+  "/member",
+  "/notifications",
+  "/profile",
+  "/reading-list",
+  "/reset-password",
+  "/signup",
+] as const;
+
+function shouldPreventIndexing(pathname: string) {
+  return (
+    PRIVATE_OR_AUTH_ROUTES.some(
+      (route) => pathname === route || pathname.startsWith(route + "/")
+    ) || /^\/prompts\/[^/]+\/respond\/?$/.test(pathname)
+  );
+}
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+  const preventIndexing = shouldPreventIndexing(request.nextUrl.pathname);
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
+    if (preventIndexing) {
+      response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    }
     return response;
   }
 
@@ -46,6 +76,12 @@ export async function middleware(request: NextRequest) {
 
   // Refresh and validate the member session on each request.
   await supabase.auth.getUser();
+
+  // Member-only and authentication routes must not appear in public search indexes.
+  // Apply this after session refresh because setAll may replace the response object.
+  if (preventIndexing) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
 
   return response;
 }
