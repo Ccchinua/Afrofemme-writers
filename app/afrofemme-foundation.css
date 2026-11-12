@@ -94,3 +94,44 @@ body {
     transition-duration: .01ms !important;
   }
 }
+
+/* Make the beadwork identity visible in the public homepage chrome. */
+.af-nav .af-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.58rem;
+  flex: 0 0 auto;
+}
+.af-nav .af-brand-lockup .af-bead-mark {
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(0 2px 5px rgb(36 36 56 / 12%));
+}
+.af-nav .af-brand-lockup .af-brand-word {
+  color: var(--af-ink);
+}
+.af-nav .af-brand-lockup .af-brand-dot {
+  color: var(--af-coral);
+}
+.af-topline {
+  position: relative;
+}
+.af-topline::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--af-emerald) 0 12%,
+    var(--af-ivory) 12% 24%,
+    var(--af-royal-blue) 24% 36%,
+    var(--af-burgundy) 36% 48%,
+    var(--af-plum) 48% 60%,
+    var(--af-coral) 60% 72%,
+    var(--af-amber) 72% 84%,
+    var(--af-peach) 84% 100%
+  );
+  pointer-events: none;
+}
