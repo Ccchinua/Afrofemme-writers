@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Bell, BookOpen, Compass, Feather, Heart, Home as HomeIcon, ImagePlus, MessageCircle, Mic2, Search, Sparkles, Users, Video } from "lucide-react";
+import BeadMark from "@/components/brand/bead-mark";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -19,7 +20,7 @@ export default async function Home() {
   return <main className="af-home">
     <div className="af-topline"><span>✳ A DIGITAL HOME FOR AFRICAN WOMEN</span><span>HER VOICE. HER STORY. HER WORLD.</span></div>
     <header className="af-nav">
-      <Link href="/" className="af-wordmark">afrofemme<span>.</span></Link>
+      <Link href="/" className="af-wordmark af-brand-lockup" aria-label="Afrofemme Writers home"><BeadMark variant="cluster" size={34} label="" /><span className="af-brand-word">afrofemme<span className="af-brand-dot">.</span></span></Link>
       <nav><Link className="active" href="/">Home</Link><Link href="/feed">Community</Link><Link href="/discover">Discover</Link><Link href="/stories">Read</Link><Link href="/gatherings">Gatherings</Link></nav>
       <div className="af-nav-actions"><Link aria-label="Search writers" href="/discover"><Search size={18}/></Link><Link aria-label="Notifications" href="/notifications"><Bell size={18}/></Link>{user ? <Link className="af-avatar-link" href="/profile">↗</Link> : <Link className="af-login" href="/login">Log in</Link>}<Link className="af-join" href={user ? "/dashboard" : "/signup"}>{user ? "My studio" : "Join Afrofemme"} <ArrowUpRight size={15}/></Link></div>
     </header>
