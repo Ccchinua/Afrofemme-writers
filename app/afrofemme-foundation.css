@@ -21,7 +21,8 @@
   --color-primary: var(--af-emerald);
   --color-primary-contrast: #FFFFFF;
   --color-secondary: var(--af-royal-blue);
-  --color-accent: var(--af-coral);
+  /* Coral stays decorative on light surfaces; burgundy is the accessible text accent. */
+  --color-accent: var(--af-burgundy);
   --color-highlight: var(--af-amber);
   --color-error: var(--af-burgundy);
   --color-focus: var(--af-emerald);
